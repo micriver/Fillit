@@ -1,0 +1,22 @@
+#Executables
+*.out
+
+#Libraries
+*.lib
+*.a
+
+#Folders
+/includes/*
+/libft-unit-tests
+/working
+/tests
+
+#Object Files
+*.o
+/objects
+
+#Mains
+*main.c
+
+#Misc files
+*.swp
