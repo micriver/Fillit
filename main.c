@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/04/18 20:04:17 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/04/19 11:44:38 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,13 @@ int		main(int ac, char **av)
 	if (ac == 2)
 	{
 		int fd;
-		char *line;
+		//char *line;
 		int i;
 
 		i = 0;
 		fd = open(av[1], O_RDONLY);
-		while (i <= 5) 	//this loop is at 3 because
-						//I only want to go through 
-						//4 lines in a single tet rn
-		{
-			get_next_line(fd, &line);
-			if (!validate_tetro(line))
-				ERROR;
-			printf("%s\n", line);
-			i++;
-		}
-		// if (line == NULL)
-		// 	printf("this is a new line\n");
+		if (!read_tetros(fd))
+			ERROR;
 	}
 	else
 	{
@@ -50,11 +40,47 @@ int		main(int ac, char **av)
 }
 
 /*
-** This function loops through each LINE recieved from gnl
-** looking for only the chars found in a valid tetrimino file
+** The read function validates the given input and places the 
+** valid tetriminos in memory to be called later
+**
+** If there are errors, we return (0), otherwise return TRUE
 */
 
-int		validate_tetro(char *str)
+int		read_tetros(int fd)
+{
+	//may not be necessary	
+	//static char 	*temp[4864];
+
+	//for the buff_size below, do we count the number of chars 
+	//in a 26 tetro file and set that 
+	//as the max buff_size?
+	char			buffer[BUFF_SIZE + 1];
+	//char			*tempmem;
+	int				readresult;
+
+	readresult = 0;
+	//quick checks
+	if (fd < 0 || fd >= 4864)
+		return (0);
+	//start populating the buffer string with all tetro chars from file
+	if (read(fd, buffer, BUFF_SIZE) < 0)
+		return (0);
+	
+	//terminate the string
+	buffer[readresult] = '\0';
+	printf("%s\n", buffer);
+
+	//feed the whole string recieved from the read function above to validate the tetros!!!!	
+	if (!validate_tetros(buffer))
+				return (0);
+
+	//figure out a way to place the validated buffer string into a linked list 
+	//separated by their new lines into their own nodes
+	//----list creation and placement function-----
+	return (1);
+}
+
+int		validate_tetros(char *str)
 {
 	int i;
 	

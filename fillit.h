@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/04/18 19:45:20 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/04/19 11:40:47 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 }					tetrimino_node; */
 
 void    fillit();
-int     validate_tetro(char *str);
+int		read_tetros(int fd);
+int		validate_tetros(char *str);
 
 #endif
