@@ -1,0 +1,22 @@
+#Executables
+*.out
+fillit
+
+#Libraries
+*.a
+
+#Folders
+/includes/*
+/tests
+
+#Object Files
+*.o
+/objects
+
+#Misc files
+*.swp
+*.txt
+*.sh
+.nfs*
+*.gch
+*.fillit

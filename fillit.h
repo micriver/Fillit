@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/04/18 13:15:25 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/04/18 19:45:20 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
+
+/* typedef struct		tetrimino_node
+{
+	char			line[1];
+	char 			line[2];
+	char 			line[3];
+	char 			line[4];
+	struct tetrimino_node	*next;
+}					tetrimino_node; */
 
 void    fillit();
 int     validate_tetro(char *str);

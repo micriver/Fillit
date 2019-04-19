@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/04/18 14:44:36 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/04/18 20:04:17 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,18 @@ int		main(int ac, char **av)
 
 		i = 0;
 		fd = open(av[1], O_RDONLY);
-		while (i <= 3)
+		while (i <= 5) 	//this loop is at 3 because
+						//I only want to go through 
+						//4 lines in a single tet rn
 		{
 			get_next_line(fd, &line);
-			// if ((get_next_line(fd, &line) == 0))
-			// 	return (0);
-			if (validate_tetro(line) == 0)
+			if (!validate_tetro(line))
 				ERROR;
+			printf("%s\n", line);
 			i++;
 		}
-		if (line == NULL)
-				printf("this is a new line\n");
-		printf("%s\n", line);
-		// if (i % 4 != 0)
-		// {
-		// 	ft_putstr(ERROR);
-		// 	return (0);
-		// }
+		// if (line == NULL)
+		// 	printf("this is a new line\n");
 	}
 	else
 	{
@@ -55,45 +50,32 @@ int		main(int ac, char **av)
 }
 
 /*
-** This function loops through each line recieved from gnl
+** This function loops through each LINE recieved from gnl
 ** looking for only the chars found in a valid tetrimino file
 */
 
 int		validate_tetro(char *str)
 {
 	int i;
-	int dotcount;
-	int sharpcount;
 	
 	i = 0;
-	dotcount = 0;
-	sharpcount = 0;
 	//charcountcheck can be in another function
-	if (ft_strlen(str) != 4)
-		return (0);
+	if (str[1] == '\n')
+	{
+		printf("It IS seeing the newline char\n");
+	}
+	/* if (ft_strlen(str) != 4)
+	{
+		// else
+		printf("It's NOT seeing the newline char");
+		// return (0);
+	} */
 	//This loop checks for invalid chars
 	while (str[i])
 	{
 		if (str[i] != '.' && str[i] != '#')
 			return (0);
-		//This loop counts the number of sharps but since validate tetro
-		//looks onyl at one line at a time, we can't count the number of sharps
-		//across the whole tetrimino just yet
-		// if (str[i] == '#')
-		// {
-		// 	sharpcount++;
-		// 	if (sharpcount > 4)
-		// 		return (0);
-		// }	
 		i++;
 	}
-	// i = 0;
-	// while (str[i])
-	// {
-
-	// 	i++;
-	// }
-	
-	//printf("%d dots, %d sharps\n", dotcount, sharpcount);
 	return (1);
 }
