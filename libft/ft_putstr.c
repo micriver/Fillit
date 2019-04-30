@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 10:06:23 by mirivera          #+#    #+#             */
-/*   Updated: 2019/03/04 13:15:47 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/04/24 18:32:42 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 
 void	ft_putstr(const char *str)
 {
-	int i;
-
-	i = 0;
-	if (str)
-	{
-		while (str[i] != '\0')
-		{
-			ft_putchar(str[i]);
-			i++;
-		}
-	}
-	else
-		return ;
+	write(1, str, ft_strlen((char *)str));
 }
+
