@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 19:38:06 by mirivera          #+#    #+#              #
-#    Updated: 2019/04/30 20:09:03 by mirivera         ###   ########.fr        #
+#    Updated: 2019/05/01 19:19:24 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRC = main.c 
 
-OBJ = *.o
+OBJ = main.o
 
 all: $(NAME)
 
