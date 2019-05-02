@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/04/30 15:39:23 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/01 17:23:59 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,108 @@
 ** your program must display its usage and exit properly ✓
 */
 
+
+
+// This function is just getting the whole string
+ char *txt2Array(char *txt)
+{
+    int fd;
+    char buf; // where we store the strings we've read into for further process
+    char *dest; // the returned string we've read
+    int x; // our incrememtor through the whole string
+
+    x = 0;
+    fd = open(txt, O_RDONLY); // opening the file arg,argv *file name we make*
+    while (read(fd, &buf, 1)) // read into file and get the size of the whole string
+        x++;
+    if (x < 22) // if we get less than 22 chars then we know its not a valid piece
+    	ERROR;
+    dest = ft_strnew(x); // allocate space for our new strin | at the size of x(strlen)
+    close(fd); // close fd as we are not using for this portion anymore
+    x = 0; // set x to 0 again to place the string into dest 1 by 1
+    fd = open(txt, O_RDONLY);
+    while (read(fd, &buf, 1))
+        dest[x++] = buf; /// while reading agian place every piece intp buff
+    close(fd); // final close
+    return (dest); // return whole string in file.txt
+}
+
+// function to seperate every 21 chars into a 2d array
+char **ft_seperate(char *str) 
+{
+    char **dest; // creating our new 2d array
+    int i;
+
+    i = 0;
+    dest = (char**)malloc(sizeof(char*) * 27); // allocating space for 2d array, limiting to 27 for an extra NULL string
+    while (*str) // using our current string as a place holder which will change
+    {
+        dest[i] = ft_strnew(21); // creating a new string of 21 bytes in each index
+        ft_strncpy(dest[i], str, 21); // copy at every 21 pieces to new index
+        str += 21; // adding 21 to old string to skip the 21 we alread had
+        i++;
+    }
+    dest[i] = NULL; // adding a null string at the end of the 2d array
+    return (dest);
+}
+
+int		validchar(int i)
+{
+	if (i == '.' || i == '#' || i == '\n')
+		return (1);
+	return (0);
+}
+
+int		validate(char **pieces)
+{
+	int i; // to traverse chars inside our pieces
+	int sharpcount;
+	int nlcount;
+	
+	i = 0;
+	sharpcount = 0;
+	nlcount = 0;
+	while (pieces[0][i] != '\0' && i <= 20)
+	{
+		if (!validchar(pieces[0][i]))
+			return (0);
+		if (pieces[0][i] == '#')
+			sharpcount++;
+		if ((i + 1) % 5 == 0 && pieces[0][i] != '\n')
+		{
+				return (0);
+		}
+		i++;
+	}
+	if (sharpcount != 4 || pieces[0][20] != '\n')
+		return (0);
+	return (1);
+}
+
 int		main(int ac, char **av)
 {
-	if (ac == 2)
-	{
-		int fd;
-		int result;
-		static char temp[546];
-		char *buf;
+    char *txt; // this will be our file.txt in argument count
+    char **pieces;
+    int i;
 
-		fd = open(av[1], O_RDONLY);
-		while ((result = read(fd, temp, 546)) > 0)
-		{
-			// if you change to 546 you will read whole file
-			buf = ft_strndup(temp, 21); 
-		}
-		printf("%s", buf);
-	}
+    i = 0;
+    if (ac == 2) // a.out file.txt
+    {
+        txt = txt2Array(av[1]); // reads into file and stores whole string into txt
+        pieces = ft_seperate(txt); // then seperate every 21 pieces into different index's
+        //printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
+        while (pieces[i]) // print all of the index's containg the 22 byte strings
+        {
+			if (!validate(pieces))
+				ERROR;
+            printf("%s", pieces[i]); // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
+            i++;
+        }
+    }
 	else
 	{
 		(void)av;
 		USAGE;
 	}
 	return (0);
-}
-
-int		validate_tetros(char *str)
-{
-	int i;
-	
-	i = 0;
-	
-
-
-
-	return (1);
 }

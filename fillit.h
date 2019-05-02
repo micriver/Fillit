@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/04/19 11:40:47 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:47:11 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define USAGE ft_putstr("usage: fillit target_file\n")
 # define ERROR {ft_putstr("error\n"); \
-    return (0); }
+    exit(0); } // exit entire program instead of breaking so we dont get an error
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
@@ -23,17 +23,6 @@
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 
-/* typedef struct		tetrimino_node
-{
-	char			line[1];
-	char 			line[2];
-	char 			line[3];
-	char 			line[4];
-	struct tetrimino_node	*next;
-}					tetrimino_node; */
-
-void    fillit();
-int		read_tetros(int fd);
-int		validate_tetros(char *str);
+int		validate(char **pieces);
 
 #endif
