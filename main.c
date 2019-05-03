@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/01 17:23:59 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/02 19:25:25 by brfeltz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 
 // This function is just getting the whole string
- char *txt2Array(char *txt)
+ char *textarray(char *txt)
 {
     int fd;
     char buf; // where we store the strings we've read into for further process
@@ -96,25 +96,97 @@ int		validate(char **pieces)
 	return (1);
 }
 
+char	**ft_grid(int size)
+{
+	char **grid;
+	int	row;
+	int	col;
+
+	row = 0;
+	col = 0;
+	grid = (char**)malloc(sizeof(char*) * (size + 1));
+	while(row < size)
+	{
+		col = 0;
+		grid[row] = (char*)malloc(sizeof(char*) * (size + 1));
+		while (col < size)
+		{
+			grid[row][col] = '.';
+			col++;
+		}
+		row++;
+	}
+	return(grid);
+}
+
+char	**move_pieces(char **grid, char **pieces, int size)
+{
+	char *row;
+	char *col;
+	int i;
+	int j;
+	char temp1;
+	char temp2;
+	
+	j = 0;
+	i = 0;
+	temp1 = *ft_strnew(size);
+	temp2 = *ft_strnew(size);
+	row = ft_strnew(pieces[0][i]);
+	col = ft_strnew(pieces[j][0]);
+	if(!grid || !pieces)
+		ERROR;
+	while(grid[0][i])
+	{
+		i = 0;
+		temp1 = *pieces[i];
+		grid[0][i] = *ft_strcpy(&row[i], pieces[i]);
+		row += 21;
+		i++;
+		//free(&temp1);
+	}
+	while(grid[j][0])
+	{
+		j = 0;
+		temp2 = *pieces[j];
+		grid[j][0] = *ft_strcpy(&col[j], pieces[j]);
+		col += 21;
+		j++;
+		//free(&temp2);
+	}
+	return(grid);
+}
+
 int		main(int ac, char **av)
 {
     char *txt; // this will be our file.txt in argument count
-    char **pieces;
+    char **pieces; // our pieces from input file
+	char **ft_gridy; // place new pieces into grid after moved and validated
     int i;
+	int size = 22;
 
     i = 0;
     if (ac == 2) // a.out file.txt
     {
-        txt = txt2Array(av[1]); // reads into file and stores whole string into txt
+        txt = textarray(av[1]); // reads into file and stores whole string into txt
         pieces = ft_seperate(txt); // then seperate every 21 pieces into different index's
         //printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
-        while (pieces[i]) // print all of the index's containg the 22 byte strings
+        /*while (pieces[i]) // print all of the index's containg the 22 byte strings
         {
 			if (!validate(pieces))
 				ERROR;
             printf("%s", pieces[i]); // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
             i++;
         }
+		*/
+		ft_gridy = ft_grid(size);
+		while (ft_gridy)
+		{
+			printf("%s\n", *move_pieces(ft_gridy,pieces, size));
+			i++;
+			printf("Success\n");
+		}
+		printf("Failed\n");
     }
 	else
 	{
