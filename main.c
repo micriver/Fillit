@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/02 19:25:25 by brfeltz          ###   ########.fr       */
+/*   Updated: 2019/05/03 17:53:34 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 ** your program must display its usage and exit properly ✓
 */
 
-
-
 // This function is just getting the whole string
- char *textarray(char *txt)
+char *textarray(char *txt)
 {
     int fd;
     char buf; // where we store the strings we've read into for further process
@@ -51,12 +49,14 @@ char **ft_seperate(char *str)
     int i;
 
     i = 0;
-    dest = (char**)malloc(sizeof(char*) * 27); // allocating space for 2d array, limiting to 27 for an extra NULL string
+    dest = (char**)malloc(sizeof(char*) * 27); // allocating space for 2d array, limiting to 27 for a NULL string to finish the 2D array
     while (*str) // using our current string as a place holder which will change
     {
+		//tetrimino check function should go here prior to populating the 2D array
         dest[i] = ft_strnew(21); // creating a new string of 21 bytes in each index
+
         ft_strncpy(dest[i], str, 21); // copy at every 21 pieces to new index
-        str += 21; // adding 21 to old string to skip the 21 we alread had
+        str += 21; // adding 21 to old string to skip the 21 we already had
         i++;
     }
     dest[i] = NULL; // adding a null string at the end of the 2d array
@@ -96,6 +96,64 @@ int		validate(char **pieces)
 	return (1);
 }
 
+int		main(int ac, char **av)
+{
+    char *txt; // this will be our file.txt in argument count
+    char **pieces; // our pieces from input file
+	char **ft_gridy; // place new pieces into grid after moved and validated
+    int i;
+	int size = 22;
+
+    i = 0;
+    if (ac == 2) // a.out file.txt
+    {
+        txt = textarray(av[1]); // reads into file and stores whole string into txt
+        pieces = ft_seperate(txt); // then seperate every 21 pieces into different index's
+        //printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
+        /*while (pieces[i]) // print all of the index's containg the 22 byte strings
+        {
+			if (!validate(pieces))
+				ERROR;
+            printf("%s", pieces[i]); // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
+            i++;
+        }
+		*/
+		ft_gridy = ft_grid(size);
+		while (ft_gridy)
+		{
+			printf("%s\n", *move_pieces(ft_gridy,pieces, size));
+			i++;
+			printf("Success\n");
+		}
+		printf("Failed\n");
+    }
+	else
+	{
+		(void)av;
+		USAGE;
+	}
+	return (0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 char	**ft_grid(int size)
 {
 	char **grid;
@@ -156,42 +214,4 @@ char	**move_pieces(char **grid, char **pieces, int size)
 	}
 	return(grid);
 }
-
-int		main(int ac, char **av)
-{
-    char *txt; // this will be our file.txt in argument count
-    char **pieces; // our pieces from input file
-	char **ft_gridy; // place new pieces into grid after moved and validated
-    int i;
-	int size = 22;
-
-    i = 0;
-    if (ac == 2) // a.out file.txt
-    {
-        txt = textarray(av[1]); // reads into file and stores whole string into txt
-        pieces = ft_seperate(txt); // then seperate every 21 pieces into different index's
-        //printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
-        /*while (pieces[i]) // print all of the index's containg the 22 byte strings
-        {
-			if (!validate(pieces))
-				ERROR;
-            printf("%s", pieces[i]); // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
-            i++;
-        }
-		*/
-		ft_gridy = ft_grid(size);
-		while (ft_gridy)
-		{
-			printf("%s\n", *move_pieces(ft_gridy,pieces, size));
-			i++;
-			printf("Success\n");
-		}
-		printf("Failed\n");
-    }
-	else
-	{
-		(void)av;
-		USAGE;
-	}
-	return (0);
-}
+*/
