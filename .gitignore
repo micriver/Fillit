@@ -20,3 +20,5 @@ fillit
 .nfs*
 *.gch
 *.fillit
+sudoku_main.c
+sudoku_ult_solve.c

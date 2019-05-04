@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 19:38:06 by mirivera          #+#    #+#              #
-#    Updated: 2019/05/01 19:19:24 by mirivera         ###   ########.fr        #
+#    Updated: 2019/05/03 19:34:37 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,16 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = main.c 
+SRC = main.c validate.c
 
-OBJ = main.o
+OBJ = main.o validate.o
 
 all: $(NAME)
 
 $(NAME):
 	@make -C libft/ fclean && make -C libft/
 	@$(CC) $(CFLAGS) -I $(HEADERS) -o main.o -c main.c
+	@$(CC) $(CFLAGS) -I $(HEADERS) -o validate.o -c validate.c
 	@$(CC) $(CFLAGS) -I $(HEADERS) -o fillit $(OBJ) -L libft/ -lft -g
 
 clean:
@@ -42,3 +43,7 @@ re: fclean all
 exe:
 	@rm -rf a.out*
 	@ls
+
+debug:
+	@make -C libft/ fclean && make -C libft/
+	@@$(CC) $(CFLAGS) -I $(HEADERS) main.c validate.c libft/libft.a -g

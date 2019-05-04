@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/03 17:53:34 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/03 19:48:00 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char *textarray(char *txt)
     fd = open(txt, O_RDONLY); // opening the file arg,argv *file name we make*
     while (read(fd, &buf, 1)) // read into file and get the size of the whole string
         x++;
-    if (x < 22) // if we get less than 22 chars then we know its not a valid piece
+    if (x < 20) // if we get less than 20 chars then we know its not a valid piece
     	ERROR;
     dest = ft_strnew(x); // allocate space for our new strin | at the size of x(strlen)
     close(fd); // close fd as we are not using for this portion anymore
@@ -63,69 +63,30 @@ char **ft_seperate(char *str)
     return (dest);
 }
 
-int		validchar(int i)
-{
-	if (i == '.' || i == '#' || i == '\n')
-		return (1);
-	return (0);
-}
-
-int		validate(char **pieces)
-{
-	int i; // to traverse chars inside our pieces
-	int sharpcount;
-	int nlcount;
-	
-	i = 0;
-	sharpcount = 0;
-	nlcount = 0;
-	while (pieces[0][i] != '\0' && i <= 20)
-	{
-		if (!validchar(pieces[0][i]))
-			return (0);
-		if (pieces[0][i] == '#')
-			sharpcount++;
-		if ((i + 1) % 5 == 0 && pieces[0][i] != '\n')
-		{
-				return (0);
-		}
-		i++;
-	}
-	if (sharpcount != 4 || pieces[0][20] != '\n')
-		return (0);
-	return (1);
-}
-
 int		main(int ac, char **av)
 {
     char *txt; // this will be our file.txt in argument count
     char **pieces; // our pieces from input file
-	char **ft_gridy; // place new pieces into grid after moved and validated
+	// char **ft_gridy; // place new pieces into grid after moved and validated
     int i;
-	int size = 22;
+	// int size = 22;
 
     i = 0;
     if (ac == 2) // a.out file.txt
     {
         txt = textarray(av[1]); // reads into file and stores whole string into txt
+		if (!checkchars(txt, 0, 0, 0))
+			ERROR;
+		printf("%s", txt);
         pieces = ft_seperate(txt); // then seperate every 21 pieces into different index's
-        //printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
-        /*while (pieces[i]) // print all of the index's containg the 22 byte strings
+        /* printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
+        while (pieces[i]) // print all of the index's containg the 22 byte strings
         {
 			if (!validate(pieces))
 				ERROR;
             printf("%s", pieces[i]); // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
             i++;
-        }
-		*/
-		ft_gridy = ft_grid(size);
-		while (ft_gridy)
-		{
-			printf("%s\n", *move_pieces(ft_gridy,pieces, size));
-			i++;
-			printf("Success\n");
-		}
-		printf("Failed\n");
+        } */
     }
 	else
 	{

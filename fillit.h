@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/01 18:47:11 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/03 19:14:46 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 
-int		validate(char **pieces);
+int		checkchars(char *str, int d, int s, int nl);
 
 #endif
