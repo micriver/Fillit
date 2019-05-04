@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:33:11 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/03 19:41:17 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/03 20:03:06 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 **
 ** If there's a 21st character, then it needs to be a new line
 ** otherwise, we return FALSE
-**
 */
 
 int		checkchars(char *str, int d, int s, int nl)

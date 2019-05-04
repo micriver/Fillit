@@ -8,6 +8,7 @@ fillit
 #Folders
 /includes/*
 /tests
+a.out.dSYM/
 
 #Object Files
 *.o

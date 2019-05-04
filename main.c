@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/03 19:48:00 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/03 20:56:01 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,12 @@ char **ft_seperate(char *str)
 {
     char **dest; // creating our new 2d array
     int i;
-
+	
     i = 0;
     dest = (char**)malloc(sizeof(char*) * 27); // allocating space for 2d array, limiting to 27 for a NULL string to finish the 2D array
     while (*str) // using our current string as a place holder which will change
     {
-		//tetrimino check function should go here prior to populating the 2D array
         dest[i] = ft_strnew(21); // creating a new string of 21 bytes in each index
-
         ft_strncpy(dest[i], str, 21); // copy at every 21 pieces to new index
         str += 21; // adding 21 to old string to skip the 21 we already had
         i++;
@@ -82,8 +80,6 @@ int		main(int ac, char **av)
         /* printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
         while (pieces[i]) // print all of the index's containg the 22 byte strings
         {
-			if (!validate(pieces))
-				ERROR;
             printf("%s", pieces[i]); // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
             i++;
         } */
