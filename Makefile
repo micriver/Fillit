@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 19:38:06 by mirivera          #+#    #+#              #
-#    Updated: 2019/05/03 19:34:37 by mirivera         ###   ########.fr        #
+#    Updated: 2019/05/06 11:08:52 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,15 +34,14 @@ clean:
 	@echo 'Removing object files'
 	@rm -rf $(OBJ)
 
-fclean: clean
+fclean: clean exe
 	@echo 'Removing fillit executable'
 	@rm -rf fillit
 
-re: fclean all
+re: fclean exe all
 
 exe:
 	@rm -rf a.out*
-	@ls
 
 debug:
 	@make -C libft/ fclean && make -C libft/

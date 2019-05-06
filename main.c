@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/03 20:56:01 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/06 11:44:44 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char *textarray(char *txt)
     fd = open(txt, O_RDONLY); // opening the file arg,argv *file name we make*
     while (read(fd, &buf, 1)) // read into file and get the size of the whole string
         x++;
-    if (x < 20) // if we get less than 20 chars then we know its not a valid piece
+    if (x < 19) // if we get less than 19 chars then we know its not a valid piece
     	ERROR;
     dest = ft_strnew(x); // allocate space for our new strin | at the size of x(strlen)
     close(fd); // close fd as we are not using for this portion anymore
@@ -38,6 +38,7 @@ char *textarray(char *txt)
     fd = open(txt, O_RDONLY);
     while (read(fd, &buf, 1))
         dest[x++] = buf; /// while reading agian place every piece intp buff
+	dest[x] = '\0';
     close(fd); // final close
     return (dest); // return whole string in file.txt
 }
@@ -46,18 +47,20 @@ char *textarray(char *txt)
 char **ft_seperate(char *str) 
 {
     char **dest; // creating our new 2d array
+	char *oldstr;
     int i;
 	
     i = 0;
-    dest = (char**)malloc(sizeof(char*) * 27); // allocating space for 2d array, limiting to 27 for a NULL string to finish the 2D array
-    while (*str) // using our current string as a place holder which will change
+	oldstr = str;
+    dest = (char**)malloc(sizeof(char*) * 27); // allocating space for 2d array, limiting to 27
+    while (oldstr)
     {
-        dest[i] = ft_strnew(21); // creating a new string of 21 bytes in each index
-        ft_strncpy(dest[i], str, 21); // copy at every 21 pieces to new index
-        str += 21; // adding 21 to old string to skip the 21 we already had
+        dest[i] = (char *)malloc(sizeof(char) * (21 + 1)); // creating a new string of 21 bytes in each index
+        ft_strncpy(dest[i], oldstr, 21); // copy at every 21 pieces to new index
+        oldstr += 21; // adding 21 to old string to skip the 21 we alread had
         i++;
     }
-    dest[i] = NULL; // adding a null string at the end of the 2d array
+    dest[i] = NULL; // null terminate to stop at the end of the 2d array
     return (dest);
 }
 
@@ -75,14 +78,15 @@ int		main(int ac, char **av)
         txt = textarray(av[1]); // reads into file and stores whole string into txt
 		if (!checkchars(txt, 0, 0, 0))
 			ERROR;
-		printf("%s", txt);
         pieces = ft_seperate(txt); // then seperate every 21 pieces into different index's
-        /* printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
+        // printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
         while (pieces[i]) // print all of the index's containg the 22 byte strings
         {
-            printf("%s", pieces[i]); // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
+            if (!checksides(pieces)) // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
+				ERROR;
+			printf("%s", pieces[i]);
             i++;
-        } */
+        }
     }
 	else
 	{
