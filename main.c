@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/06 11:44:44 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/06 13:38:17 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ char *textarray(char *txt)
     fd = open(txt, O_RDONLY);
     while (read(fd, &buf, 1))
         dest[x++] = buf; /// while reading agian place every piece intp buff
-	dest[x] = '\0';
     close(fd); // final close
     return (dest); // return whole string in file.txt
 }
@@ -53,14 +52,14 @@ char **ft_seperate(char *str)
     i = 0;
 	oldstr = str;
     dest = (char**)malloc(sizeof(char*) * 27); // allocating space for 2d array, limiting to 27
-    while (oldstr)
+    while (*oldstr != '\0')
     {
-        dest[i] = (char *)malloc(sizeof(char) * (21 + 1)); // creating a new string of 21 bytes in each index
+        dest[i] = ft_strnew(21); // creating a new string of 21 bytes in each index
         ft_strncpy(dest[i], oldstr, 21); // copy at every 21 pieces to new index
+		i++;
         oldstr += 21; // adding 21 to old string to skip the 21 we alread had
-        i++;
     }
-    dest[i] = NULL; // null terminate to stop at the end of the 2d array
+    dest[i] = NULL; //adding a null string at the end of the 2d array
     return (dest);
 }
 
@@ -68,9 +67,7 @@ int		main(int ac, char **av)
 {
     char *txt; // this will be our file.txt in argument count
     char **pieces; // our pieces from input file
-	// char **ft_gridy; // place new pieces into grid after moved and validated
     int i;
-	// int size = 22;
 
     i = 0;
     if (ac == 2) // a.out file.txt

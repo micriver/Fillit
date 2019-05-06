@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:33:11 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/06 11:23:36 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/06 13:41:45 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		checksides(char **str)
 
 	i = 0;
 	sidecount = 0;
-	while (str[0][i] != '\0' && str[0][i] != '.')
+	while (str[0][i])
 	{
 		if (str[0][i] == '#')
 		{
