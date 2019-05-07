@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/06 19:35:45 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/07 15:30:06 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char *textarray(char *txt)
     fd = open(txt, O_RDONLY); // opening the file arg,argv *file name we make*
     while (read(fd, &buf, 1)) // read into file and get the size of the whole string
         x++;
-    if (x < 20) // if we get less than 19 chars then we know its not a valid piece
+    if (x < 20 || x > 545) // if we get less than 19 chars then we know its not a valid piece
     	ERROR;
     dest = ft_strnew(x); // allocate space for our new strin | at the size of x(strlen)
     close(fd); // close fd as we are not using for this portion anymore
@@ -58,7 +58,7 @@ char **ft_seperate(char *str)
         ft_strncpy(dest[i], oldstr, 21); // copy at every 21 pieces to new index
 		i++;
         oldstr += 21; // adding 21 to old string to skip the 21 we alread had
-		if (ft_strlen(oldstr) < 20)
+		if (ft_strlen(oldstr) < 20) //this was for the garbage value tetriminos being printed
 			break ;
     }
     dest[i] = NULL; //adding a null string at the end of the 2d array
