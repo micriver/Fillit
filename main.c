@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/06 13:38:17 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/06 17:06:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char *textarray(char *txt)
     fd = open(txt, O_RDONLY); // opening the file arg,argv *file name we make*
     while (read(fd, &buf, 1)) // read into file and get the size of the whole string
         x++;
-    if (x < 19) // if we get less than 19 chars then we know its not a valid piece
+    if (x < 20) // if we get less than 19 chars then we know its not a valid piece
     	ERROR;
     dest = ft_strnew(x); // allocate space for our new strin | at the size of x(strlen)
     close(fd); // close fd as we are not using for this portion anymore
@@ -79,8 +79,15 @@ int		main(int ac, char **av)
         // printf("%s\n", pieces[1]); if you use this and not the while loop it will print just string in its corresponding index
         while (pieces[i]) // print all of the index's containg the 22 byte strings
         {
-            if (!checksides(pieces)) // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
+			// printf("Now checking tetrimino piece, %d\n", i);
+            if (!checksides(pieces[i])) // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
 				ERROR;
+			// printf("%s", pieces[i]);
+            i++;
+        }
+		i = 0;
+		while (pieces[i]) // print all of the index's containg the 22 byte strings
+        {
 			printf("%s", pieces[i]);
             i++;
         }

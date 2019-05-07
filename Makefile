@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 19:38:06 by mirivera          #+#    #+#              #
-#    Updated: 2019/05/06 11:08:52 by mirivera         ###   ########.fr        #
+#    Updated: 2019/05/06 14:35:35 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC = main.c validate.c
 
 OBJ = main.o validate.o
 
-all: $(NAME)
+all: $(NAME) debug
 
 $(NAME):
 	@make -C libft/ fclean && make -C libft/
@@ -44,5 +44,4 @@ exe:
 	@rm -rf a.out*
 
 debug:
-	@make -C libft/ fclean && make -C libft/
-	@@$(CC) $(CFLAGS) -I $(HEADERS) main.c validate.c libft/libft.a -g
+	@$(CC) $(CFLAGS) -I $(HEADERS) main.c validate.c libft/libft.a -g

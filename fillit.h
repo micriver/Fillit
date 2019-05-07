@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/06 10:07:51 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/06 17:00:05 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 # include "libft/get_next_line.h"
 
 int		checkchars(char *str, int d, int s, int nl);
-int		checksides(char **str);
+int		checksides(char *str);
 
 #endif
