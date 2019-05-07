@@ -6,6 +6,7 @@ fillit
 *.a
 
 #Folders
+samples/
 /includes/*
 /tests
 a.out.dSYM/
