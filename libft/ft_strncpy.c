@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 12:41:46 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/06 17:44:46 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/06 19:00:09 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,18 @@
 
 char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	size_t	i;
-	char	*s1;
-	char	*s2;
+	size_t i;
 
 	i = 0;
-	s1 = dest;
-	s2 = (char*)src;
-	if (ft_strlen(s2) < n)
+	while (src[i] != '\0' && i < n)
 	{
-		while (i++ < ft_strlen(s2))
-			*dest++ = *src++;
-		while (i++ <= n)
-			*dest++ = '\0';
+		dest[i] = src[i];
+		++i;
 	}
-	else
+	while (i < n)
 	{
-		while (i++ < n && src)
-			*dest++ = *src++;
+		dest[i] = '\0';
+		i++;
 	}
-	return (s1);
+	return (dest);
 }
