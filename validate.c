@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:33:11 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/06 17:04:31 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/06 17:28:01 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		checkchars(char *str, int d, int s, int nl)
 		}
 		i++;
 	}
-	return (((d % 12) == 0) && ((s % 4) == 0) && ((nl + 1) % 5) == 0) ? 1 : 0;
+	return (((d % 12) == 0) && ((s % 4) == 0) && ((nl + 1) % 5) == 0) || ((str[i+ 1]) == '\0') ? 1 : 0;
 }
 
 int		checksides(char *str)
