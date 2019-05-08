@@ -16,6 +16,7 @@ a.out.dSYM/
 /objects
 
 #Misc files
+*.py
 *.swp
 *.txt
 *.sh
