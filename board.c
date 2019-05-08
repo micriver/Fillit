@@ -6,7 +6,7 @@
 /*   By: brfeltz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/08 15:00:32 by brfeltz          ###   ########.fr       */
+/*   Updated: 2019/05/08 16:20:50 by brfeltz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,6 @@ char	ft_fill(char **pieces, int i, int j)
 	}
 	return(piece);
 }
-
-
 
 /*char	**new_2d(char **pieces)
 {
