@@ -6,7 +6,7 @@
 /*   By: brfeltz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/07 22:09:12 by brfeltz          ###   ########.fr       */
+/*   Updated: 2019/05/08 15:00:32 by brfeltz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		col_size(char **str)
 	return(col);
 }
 
-int 	2d_size(char **str)
+int 	twod_size(char **str)
 {
 	int length;
 
@@ -77,7 +77,62 @@ int 	2d_size(char **str)
 	return(length);
 }
 
-void	**flood_fill(char **pieces)
+int		piece_size(char **piece)
+{
+	int i;
+	int size;
+	char sharp;
+
+	i = 0;
+	while(piece[i])
+	{
+		if(piece[i][0] == '#' )
+			size = size + 1;
+		else if(piece[0][i] == '#')
+			size = size + 1;
+		i++;
+	}
+	return(size);
+}
+char	place_piece(int size)
+{
+	int i;
+	char piece;
+
+	piece = '#';
+	i = 0;
+	while(i < size)
+	{
+		ft_putchar(piece);
+		i++;
+	}
+	return(piece);
+}
+char	ft_fill(char **pieces, int i, int j)
+{
+	char **new_grid;
+	char piece;
+
+	i = row_size(pieces);
+	j = col_size(pieces);
+	piece = place_piece(piece_size(pieces));
+	new_grid = ft_grid(twod_size(pieces));
+	while(new_grid[i][j])
+	{
+		ft_fill(new_grid, i + 1, j);
+		ft_fill(new_grid, i - 1, j);
+		ft_fill(new_grid, i, j + 1);
+		ft_fill(new_grid, i, j - 1);
+		piece = new_grid[i][j];
+		i++;
+		j++;
+	}
+	return(piece);
+}
+
+
+
+/*char	**new_2d(char **pieces)
 {
 	char **new_grid;
 	int row;
@@ -91,4 +146,4 @@ void	**flood_fill(char **pieces)
 		return(ERROR);
 	if (!pieces[row][col])
 		return(ERROR);
-	flood_fill(
+*/

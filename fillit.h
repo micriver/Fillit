@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/06 17:00:05 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/08 15:13:41 by brfeltz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,13 @@
 
 int		checkchars(char *str, int d, int s, int nl);
 int		checksides(char *str);
+char	**ft_grid(int size);
+void	freegrid(char **grid, int size);
+int 	row_size(char **str);
+int		col_size(char **str);
+int		twod_size(char **str);
+int		piece_size(char **piece);
+char	place_piece(int size);
+char	ft_fill(char **pieces, int i, int j);
 
 #endif
