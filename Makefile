@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 19:38:06 by mirivera          #+#    #+#              #
-#    Updated: 2019/05/06 14:35:35 by mirivera         ###   ########.fr        #
+#    Updated: 2019/05/08 15:59:46 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,9 @@ fclean: clean exe
 
 re: fclean exe all
 
+test: re
+	@python3 Fillit_Test_cases.py
+	
 exe:
 	@rm -rf a.out*
 
