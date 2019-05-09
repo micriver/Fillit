@@ -6,13 +6,14 @@
 /*   By: brfeltz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/08 16:20:50 by brfeltz          ###   ########.fr       */
+/*   Updated: 2019/05/08 17:01:19 by brfeltz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
-char	**ft_grid(int size)
+char	**ft_grid(int size) // grid to place pieces on #
 {
 	char **grid;
 	int	row;
@@ -35,7 +36,7 @@ char	**ft_grid(int size)
 	return(grid);
 }
 
-void	freegrid(char **grid, int size)
+void	freegrid(char **grid, int size) // free memory for our board when we're finished with it
 {
 	int i;
 
@@ -47,7 +48,7 @@ void	freegrid(char **grid, int size)
 	}
 }
 
-int		row_size(char **str)
+int		row_size(char **str) // the size of the row in the 2d array str[x][0]
 {
 	int row;
 
@@ -57,7 +58,7 @@ int		row_size(char **str)
 	return(row);
 }
 
-int		col_size(char **str)
+int		col_size(char **str) // the size of the colum in the 2d array str[0][y]
 {
 	int col;
 
@@ -67,7 +68,7 @@ int		col_size(char **str)
 	return(col);
 }
 
-int 	twod_size(char **str)
+int 	twod_size(char **str) // the size of our 2d array
 {
 	int length;
 
@@ -77,7 +78,7 @@ int 	twod_size(char **str)
 	return(length);
 }
 
-int		piece_size(char **piece)
+int		piece_size(char **piece) // get the size of each piece, should be 4
 {
 	int i;
 	int size;
@@ -94,9 +95,10 @@ int		piece_size(char **piece)
 	}
 	return(size);
 }
-char	place_piece(int size)
+char	place_piece(int size) // print out piece
 {
 	int i;
+	int row;
 	char piece;
 
 	piece = '#';
@@ -108,7 +110,7 @@ char	place_piece(int size)
 	}
 	return(piece);
 }
-char	ft_fill(char **pieces, int i, int j)
+char	ft_fill(char **pieces, int i, int j) // fill a new 2d array with pieces and print them out
 {
 	char **new_grid;
 	char piece;
@@ -119,14 +121,15 @@ char	ft_fill(char **pieces, int i, int j)
 	new_grid = ft_grid(twod_size(pieces));
 	while(new_grid[i][j])
 	{
-		ft_fill(new_grid, i + 1, j);
-		ft_fill(new_grid, i - 1, j);
-		ft_fill(new_grid, i, j + 1);
-		ft_fill(new_grid, i, j - 1);
+		ft_fill(new_grid, i + 2, j);
+		ft_fill(new_grid, i - 2, j);
+		ft_fill(new_grid, i, j + 2);
+		ft_fill(new_grid, i, j - 2);
 		piece = new_grid[i][j];
 		i++;
 		j++;
 	}
+	printf("%s\n", new_grid);
 	return(piece);
 }
 
