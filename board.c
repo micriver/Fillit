@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   board.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brfeltz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/08 17:36:43 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/09 21:45:51 by brfeltz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,49 @@ char	**ft_grid(int size) // grid to place pieces on #
 	row = 0;
 	col = 0;
 	grid = (char**)malloc(sizeof(char*) * (size + 1));
-	while(row < size) //is 'size' referring to the tetrimino board's first row?
+	while(row < size)
 	{
 		col = 0;
 		grid[row] = (char*)malloc(sizeof(char*) * (size + 1));
-		while (col < size) //'size' in this case can be up to 26 tetriminos since size was looping through the 2d array we've built, not the number of indexes in a row, which is 4.
+		while (col < size)
 		{
 			grid[row][col] = '.';
 			col++;
 		}
 		row++;
 	}
-	printf("%s\n", *grid);
 	return(grid);
 }
 
-int	main()
+void	print_grid(char **grid)
 {
-	ft_grid(26);
-	return (0);
+	int x;
+	int y;
+
+	y = 0;
+	while (y < 4)
+	{
+		x = 0;
+		while(x < 4)
+		{
+			ft_putchar(grid[x][y]);
+			x++;
+			if (x % 4 != 0)
+				ft_putchar('.');
+		}
+		y++;
+		ft_putchar('\n');
+	}
 }
 
-/* 
+int		main()
+{
+	int i = 26;
+	print_grid(ft_grid(i));
+	return(0);
+}
+
+/*
 void	freegrid(char **grid, int size) // free memory for our board when we're finished with it
 {
 	int i;
@@ -112,10 +133,7 @@ char	place_piece(int size) // print out piece
 	piece = '#';
 	i = 0;
 	while(i < size)
-	{
-		ft_putchar(piece);
-		i++;
-	}
+		piece[i++];
 	return(piece);
 }
 char	ft_fill(char **pieces, int i, int j) // fill a new 2d array with pieces and print them out
@@ -125,26 +143,17 @@ char	ft_fill(char **pieces, int i, int j) // fill a new 2d array with pieces and
 
 	i = row_size(pieces);
 	j = col_size(pieces);
-	//when we say piece below, are we reffering to a full tetrimino with 20 chars or do you only want the actual tetris piece?
-	//we have the size for both pieces, it can be 20 for a full char tet or 4 for a tetrimino piece
 	piece = place_piece(piece_size(pieces));
 	new_grid = ft_grid(twod_size(pieces));
 	while(new_grid[i][j])
 	{
-		ft_fill(new_grid, i + 2, j);
-		ft_fill(new_grid, i - 2, j);
-		ft_fill(new_grid, i, j + 2);
-		ft_fill(new_grid, i, j - 2);
-		piece = new_grid[i][j];
-		i++;
-		j++;
+
 	}
-	printf("%s\n", new_grid);
+	printf("%c\n", piece);
 	return(piece);
 }
-*/
-
-/*char	**new_2d(char **pieces)
+/
+char	**new_2d(char **pieces)
 {
 	char **new_grid;
 	int row;
