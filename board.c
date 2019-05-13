@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   board.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brfeltz <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/09 21:45:51 by brfeltz          ###   ########.fr       */
+/*   Updated: 2019/05/13 13:05:37 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_grid(int size) // grid to place pieces on #
 	row = 0;
 	col = 0;
 	grid = (char**)malloc(sizeof(char*) * (size + 1));
-	while(row < size)
+	while (row < size)
 	{
 		col = 0;
 		grid[row] = (char*)malloc(sizeof(char*) * (size + 1));
@@ -33,7 +33,7 @@ char	**ft_grid(int size) // grid to place pieces on #
 		}
 		row++;
 	}
-	return(grid);
+	return (grid);
 }
 
 void	print_grid(char **grid)
@@ -45,7 +45,7 @@ void	print_grid(char **grid)
 	while (y < 4)
 	{
 		x = 0;
-		while(x < 4)
+		while (x < 4)
 		{
 			ft_putchar(grid[x][y]);
 			x++;
@@ -63,6 +63,41 @@ int		main()
 	print_grid(ft_grid(i));
 	return(0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 void	freegrid(char **grid, int size) // free memory for our board when we're finished with it

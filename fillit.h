@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/08 16:36:56 by brfeltz          ###   ########.fr       */
+/*   Updated: 2019/05/13 15:13:40 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 
+int     piece_index(char *str);
 int		checkchars(char *str, int d, int s, int nl);
 int		checksides(char *str);
 char	**ft_grid(int size);
 void	freegrid(char **grid, int size);
-int 	row_size(char **str);
+int     row_size(char **str);
 int		col_size(char **str);
 int		twod_size(char **str);
 int		piece_size(char **piece);
