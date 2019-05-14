@@ -6,35 +6,12 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/13 20:28:42 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/14 11:28:01 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
-
-/* char	**ft_grid(int size) // grid to place pieces on #
-{
-	char **grid;
-	int	row;
-	int	col;
-
-	row = 0;
-	col = 0;
-	grid = (char**)malloc(sizeof(char*) * (size + 1));
-	while (row < size)
-	{
-		col = 0;
-		grid[row] = (char*)malloc(sizeof(char*) * (size + 1));
-		while (col < size)
-		{
-			grid[row][col] = '.';
-			col++;
-		}
-		row++;
-	}
-	return (grid);
-} */
 
 //Doesn't have to be a 2d array board in memory
 char	*ft_board(int size)
@@ -45,50 +22,48 @@ char	*ft_board(int size)
 
 	i = 0;
 	x = 0;
-	board = (char*)malloc(sizeof(char) * (size + 1));
-	while (x < size)
+	board = (char*)malloc(sizeof(char) * size + 1);
+	while (i < size)
 	{
-		while (i < size)
-		{
+		if ((i + 1) % 5 == 0)
+			board[i] = '\n';
+		else
 			board[i] = '.';
-			i++;
-		}
-		board[i] = '\n';
 		i++;
-		x++;
+	}
+	board[i + 1] = '\0';
+	return (board);
+}
+
+char	*board_placement(char *piece, char *board)
+{
+	int i;
+	int charcount;
+	
+	i = 0;
+	charcount = 0;
+	while (piece[i] != '\0')
+	{
+		if (piece[i] != '.' && piece[i] != '\n')
+		{
+			board[i] = piece[i];
+			charcount++;
+			if (charcount == 4)
+				break ;
+		}
+		i++;
 	}
 	return (board);
 }
 
-/*
-void	print_grid(char **grid)
-{
-	int x;
-	int y;
 
-	y = 0;
-	while (y < 4)
-	{
-		x = 0;
-		while (x < 4)
-		{
-			ft_putchar(grid[x][y]);
-			x++;
-			if (x % 4 != 0)
-				ft_putchar('.');
-		}
-		y++;
-		ft_putchar('\n');
-	}
-} */
-
-int		main()
+/* int		main()
 {
 	// int i = 26;
-	printf("%s\n", ft_board(4));
+	printf("%s\n", ft_board(19));
 	return(0);
 }
-
+ */
 
 
 

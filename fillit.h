@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/13 16:18:08 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/14 11:00:37 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@
 int     piece_index(char *str);
 int		checkchars(char *str, int d, int s, int nl);
 int		checksides(char *str);
-char	**ft_grid(int size);
+char	*ft_board(int size);
+char    *board_placement(char *piece, char *board);
+
+/*
+** temp functions
+*/
+
 void	freegrid(char **grid, int size);
 int     row_size(char **str);
 int		col_size(char **str);

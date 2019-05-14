@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/13 20:02:22 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/14 11:28:41 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,10 @@ int		main(int ac, char **av)
     char *txt; // this will be our file.txt in argument count
     char letter; // this will be our file.txt in argument count
     char **pieces; // our pieces from input file
+    char *board;
     int i;
-    int j;
 
     i = 0;
-	j = 0;
     letter = 'A';
     if (ac == 2) // a.out file.txt
     {
@@ -103,13 +102,10 @@ int		main(int ac, char **av)
 				ERROR;
             convert_to_char(pieces[i], letter);
             letter++;
-			printf("%d.\n%s", i + 1, pieces[i]);
-			/* while (j++ <= 3)
-			{
-				piece_index(pieces[i]);
-				printf("%d\n", piece_index(pieces[i]));
-			} */
-			// printf("%d\n", piece_index(pieces[i]));
+			// printf("%d.\n%s", i + 1, pieces[i]);
+            board = ft_board(20);
+            board_placement(pieces[i], board);
+			printf("%d.\n%s", i + 1, board);
             i++;
         }
     }
