@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/14 13:08:37 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/14 14:09:37 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int		main(int ac, char **av)
 			// printf("%d.\n%s", i + 1, board);
             i++;
         }
-        printf("%s\n", board);
+        printf("%s", board);
     }
 	else
 	{

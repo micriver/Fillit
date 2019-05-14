@@ -6,14 +6,17 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/14 11:28:01 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:04:22 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-//Doesn't have to be a 2d array board in memory
+/*
+** creates a board in memory
+*/
+
 char	*ft_board(int size)
 {
 	char *board;
@@ -35,22 +38,35 @@ char	*ft_board(int size)
 	return (board);
 }
 
+/*
+** copies the strings from pieces onto the board in memory
+*/
+
 char	*board_placement(char *piece, char *board)
 {
 	int i;
+	int x;
 	int charcount;
 	
 	i = 0;
+	x = 0;
 	charcount = 0;
 	while (piece[i] != '\0')
 	{
 		if (piece[i] != '.' && piece[i] != '\n')
 		{
-			board[i] = piece[i];
-			charcount++;
-			if (charcount == 4)
-				break ;
+			x = i;
+			break ;
 		}
+		i++;
+	}
+	// i = 0;
+	while (piece[i] != '\0')
+	{
+		board[i - x] = piece[i];
+		charcount++;
+		if (charcount == 4)
+			break ;
 		i++;
 	}
 	return (board);
