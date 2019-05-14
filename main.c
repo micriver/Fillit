@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/14 11:28:41 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/14 12:54:08 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int		main(int ac, char **av)
         if (!checkchars(txt, 0, 0, 0))
             ERROR;
         pieces = ft_separate(txt); // then seperate every 21 pieces into different index's
+        board = ft_board(20);
         while (pieces[i]) // print all of the index's containing the 22 byte strings
         {
             if (!checksides(pieces[i])) // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
@@ -103,7 +104,6 @@ int		main(int ac, char **av)
             convert_to_char(pieces[i], letter);
             letter++;
 			// printf("%d.\n%s", i + 1, pieces[i]);
-            board = ft_board(20);
             board_placement(pieces[i], board);
 			printf("%d.\n%s", i + 1, board);
             i++;
