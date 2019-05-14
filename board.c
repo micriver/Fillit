@@ -6,14 +6,14 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/13 13:05:37 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/13 20:28:42 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-char	**ft_grid(int size) // grid to place pieces on #
+/* char	**ft_grid(int size) // grid to place pieces on #
 {
 	char **grid;
 	int	row;
@@ -34,8 +34,33 @@ char	**ft_grid(int size) // grid to place pieces on #
 		row++;
 	}
 	return (grid);
+} */
+
+//Doesn't have to be a 2d array board in memory
+char	*ft_board(int size)
+{
+	char *board;
+	int i;
+	int x;
+
+	i = 0;
+	x = 0;
+	board = (char*)malloc(sizeof(char) * (size + 1));
+	while (x < size)
+	{
+		while (i < size)
+		{
+			board[i] = '.';
+			i++;
+		}
+		board[i] = '\n';
+		i++;
+		x++;
+	}
+	return (board);
 }
 
+/*
 void	print_grid(char **grid)
 {
 	int x;
@@ -55,12 +80,12 @@ void	print_grid(char **grid)
 		y++;
 		ft_putchar('\n');
 	}
-}
+} */
 
 int		main()
 {
-	int i = 26;
-	print_grid(ft_grid(i));
+	// int i = 26;
+	printf("%s\n", ft_board(4));
 	return(0);
 }
 

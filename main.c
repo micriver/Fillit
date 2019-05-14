@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/13 15:34:23 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/13 20:02:22 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,29 +65,51 @@ char **ft_separate(char *str)
     return (dest);
 }
 
+void    convert_to_char(char *str, char c)
+{
+    int i;
+
+    i = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] == '#')
+        {
+            str[i] = c;
+        }
+        i++;
+    }
+}
+
 int		main(int ac, char **av)
 {
     char *txt; // this will be our file.txt in argument count
+    char letter; // this will be our file.txt in argument count
     char **pieces; // our pieces from input file
     int i;
     int j;
 
     i = 0;
 	j = 0;
+    letter = 'A';
     if (ac == 2) // a.out file.txt
     {
         txt = textarray(av[1]); // reads into file and stores whole string into txt
+        if (!checkchars(txt, 0, 0, 0))
+            ERROR;
         pieces = ft_separate(txt); // then seperate every 21 pieces into different index's
         while (pieces[i]) // print all of the index's containing the 22 byte strings
         {
-            if (!checksides(pieces[i]) || !checkchars(txt, 0, 0, 0)) // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
+            if (!checksides(pieces[i])) // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
 				ERROR;
-			// printf("%d.\n%s", i + 1, pieces[i]);
-			while (j++ <= 3)
+            convert_to_char(pieces[i], letter);
+            letter++;
+			printf("%d.\n%s", i + 1, pieces[i]);
+			/* while (j++ <= 3)
 			{
 				piece_index(pieces[i]);
 				printf("%d\n", piece_index(pieces[i]));
-			}
+			} */
+			// printf("%d\n", piece_index(pieces[i]));
             i++;
         }
     }

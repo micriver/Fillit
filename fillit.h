@@ -6,14 +6,14 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/13 15:13:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/13 16:18:08 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# define USAGE ft_putstr("usage: fillit source_file\n")
+# define USAGE ft_putstr("usage: fillit input_file\n")
 # define ERROR {ft_putstr("error\n"); exit(0);}
 
 # include <stdlib.h>
