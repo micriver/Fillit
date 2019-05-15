@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/15 11:21:43 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/15 13:29:16 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ char	*ft_board(int size)
 
 	i = 0;
 	x = 0;
-	board = (char*)malloc(sizeof(char) * ((size * size) + size) + 1);
+	board = ft_strnew((size * size) + size);
 	while (i < ((size * size) + size))
 	{
-		if ((i + 1) % 5 == 0)
+		if (size == 2 && (i + 1) % 3 == 0)
 			board[i] = '\n';
+		// if ((i + 1) % 5 == 0)
+			// board[i] = '\n';
 		else
 			board[i] = '.';
 		i++;
@@ -81,6 +83,7 @@ char	*board_placement(char *piece, char *board)
 		{
 			board[i - x] = piece[i];
 			charcount++;
+			x++;
 		}
 		i++;
 	}

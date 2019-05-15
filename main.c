@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/15 11:13:50 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/15 14:24:35 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		main(int ac, char **av)
 			size = piece_length(pieces[i]);
 			printf("\nThe length of the piece is %d.\n", size);
 			board = ft_board(size);
-			printf("The board, in memory, looks like this:\n%s.\n", board);
+			printf("The board, in memory, is %lu characters long and looks like this:\n%s", ft_strlen(board), board);
 			board_placement(pieces[i], board);
 			// printf("%d.\n%s", i + 1, board);
 			i++;
