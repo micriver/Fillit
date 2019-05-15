@@ -6,11 +6,11 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/14 18:42:58 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/14 19:18:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		checksides(char *str)
+int		piece_length(char *str)
 {
 	int		i;
 	int		length;
@@ -23,14 +23,17 @@ int		checksides(char *str)
 	{
 		if (piece[i] == '#')
 		{
-			(piece[i + 1] == '#') ? length++ : length;
-			(piece[i + 5] == '#') ? length++ : length;
-			(piece[i - 1] == '#') ? length++ : length;
-			(piece[i - 5] == '#') ? length++ : length;
+			//square piece
+			// (piece[i + 1] == '#' &&  piece[i + 5] == '#' && piece[i + 2] != '#') ? length = 2 : length;
+			
+			//line piece, vert + hori
+			(piece[i + 3] == '#' || piece[i + 15] == '#') ? length = 4 : length;
+			
+			// (piece[i + 5] == '#') ? length++ : length;
+			// (piece[i - 1] == '#') ? length++ : length;
+			// (piece[i - 5] == '#') ? length++ : length;
 		}
-		if (piece[20])
-			return (piece[20] != '\n') ? 0 : 1;
 		i++;
 	}
-	return (length == 6 || length == 8) ? 1 : 0;
+	return length;
 }

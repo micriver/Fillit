@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/14 14:09:37 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/14 19:47:48 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int		main(int ac, char **av)
     char letter; // this will be our file.txt in argument count
     char **pieces; // our pieces from input file
     char *board;
+    int size;
     int i;
 
     i = 0;
@@ -104,6 +105,7 @@ int		main(int ac, char **av)
             convert_to_char(pieces[i], letter);
             letter++;
 			// printf("%d.\n%s", i + 1, pieces[i]);
+            size = piece_length(pieces[i]);
             board_placement(pieces[i], board);
 			// printf("%d.\n%s", i + 1, board);
             i++;
