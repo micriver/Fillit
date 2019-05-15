@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/15 08:44:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/15 11:21:43 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ char	*ft_board(int size)
 
 	i = 0;
 	x = 0;
-	board = (char*)malloc(sizeof(char) * size + 1);
-	while (i < size)
+	board = (char*)malloc(sizeof(char) * ((size * size) + size) + 1);
+	while (i < ((size * size) + size))
 	{
 		if ((i + 1) % 5 == 0)
 			board[i] = '\n';
@@ -34,8 +34,23 @@ char	*ft_board(int size)
 			board[i] = '.';
 		i++;
 	}
-	board[i + 1] = '\0';
+	board[i] = '\0';
 	return (board);
+}
+
+void    convert_to_char(char *str, char c)
+{
+    int i;
+
+    i = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] == '#')
+        {
+            str[i] = c;
+        }
+        i++;
+    }
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/14 19:52:24 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/15 11:14:38 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int     piece_index(char *str);
 int		checkchars(char *str, int d, int s, int nl);
 int		checksides(char *str);
 char	*ft_board(int size);
+void    convert_to_char(char *str, char c);
 char    *board_placement(char *piece, char *board);
 int     piece_length(char *str);
 
