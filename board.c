@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/14 15:04:22 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/14 18:46:49 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,17 @@ char	*board_placement(char *piece, char *board)
 		}
 		i++;
 	}
-	// i = 0;
-	while (piece[i] != '\0')
+	while (piece[i] != '\0' && charcount != 4)
 	{
-		board[i - x] = piece[i];
-		charcount++;
-		if (charcount == 4)
-			break ;
+		if (piece[i] != '.' && piece[i] != '\n')
+		{
+			board[i - x] = piece[i];
+			charcount++;
+		}
 		i++;
 	}
 	return (board);
 }
-
 
 /* int		main()
 {
