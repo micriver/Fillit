@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/15 16:13:11 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/15 18:36:46 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,10 @@ int		main(int ac, char **av)
 				ERROR;
 			convert_to_char(pieces[i], letter);
 			letter++;
-			// printf("%d.\n%s", i + 1, pieces[i]);
-			// size = piece_length(pieces[i]);
-			// printf("\nThe length of the piece is %d.\n", size);
-			printf("The board, in memory, is %lu characters long and looks like this:\n%s", ft_strlen(board), board);
 			board_placement(pieces[i], board);
-			// printf("%d.\n%s", i + 1, board);
 			i++;
 		}
-		printf("\nHere's the final board with a piece on it\n\n%s", board);
+		printf("Here's the final board with a piece on it\n%s", board);
 	}
 	else
 	{
@@ -106,3 +101,9 @@ int		main(int ac, char **av)
 	}
 	return (0);
 }
+
+			// printf("%d.\n%s", i + 1, pieces[i]);
+			// size = piece_length(pieces[i]);
+			// printf("\nThe length of the piece is %d.\n", size);
+			// printf("The board, in memory, is %lu characters long and looks like this:\n%s", ft_strlen(board), board);
+			// printf("%d.\n%s", i + 1, board);
