@@ -6,7 +6,7 @@
 /*   By: brfeltz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/16 14:05:13 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/16 14:49:54 by brfeltz          ###   ########.fr       */
+/*   Updated: 2019/05/16 15:16:30 by brfeltz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,33 @@ void	free_board(char **grid, int size) // free memory for our board when we're f
 		i++;
 	}
 }
-
-void	print_board(char **board)
+void	print_board(char **board, int size)
 {
-	int i;
-	int j;
+	int row;
+	int col;
 
-	j = 0;
-	while(j < 4)
+	row = 0;
+	while (row < size)
 	{
-		i = 0;
-		while(j < 4)
+		col = 0;
+		while (col < size)
 		{
-			ft_putchar('0' + board[j][i]);
-			i++;
-			if (i % 5 != 0)
-			ft_putchar('.');
+			ft_putchar(board[row][col]);
+			col++;
 		}
-		j++;
+		ft_putchar('\n');
+		row++;
 	}
+}
+
+int		main()
+{
+	char **board;
+	char size;
+
+	size = 5;
+	board = ft_board(size);
+	print_board(board, size);
+	
+	return(0);
 }
