@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/15 18:31:23 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 15:26:53 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,111 @@
 #include <stdio.h>
 
 /*
-** creates a board in memory
+** take a piece string and converts to a 2D piece array
 */
 
-char	*ft_board(int size)
+//row and col will be fed value of 0
+char	**piece_parse(char *str, int row, int col)
 {
-	char *board;
+	char **new_piece;
+	char *old_piece;
 	int i;
-	int x;
 
 	i = 0;
-	x = 0;
-	// board = ft_strnew((size * size) + size);
-	// while (i < ((size * size) + size))
-	board = ft_strnew(size);
-	while (i < size)
+	old_piece = str;
+	new_piece = malloc(sizeof(char *) * 4);
+	while (row < 4)
 	{
-		// if (size == 2 && (i + 1) % 3 == 0)
-		// 	board[i] = '\n';
-		if ((i + 1) % 5 == 0)
-			board[i] = '\n';
-		else
-			board[i] = '.';
-		i++;
+		col = 0;
+		new_piece[row] = malloc(sizeof(char) * 4);
+		while (col < 4)
+		{
+			if (old_piece[i] == '\n')
+				i++;
+			else if (old_piece[i] == '\0')
+				break ;
+			new_piece[row][col] = old_piece[i];
+			col++;
+			i++;
+		}
+		row++;
 	}
-	board[i] = '\0';
-	return (board);
+	return (new_piece);
 }
 
-void    convert_to_char(char *str, char c)
+//create board in memory
+char	**board_parse(int size)
 {
-    int i;
+	char **board;
+	int row;
+	int col;
 
-    i = 0;
-    while (str[i] != '\0')
-    {
-        if (str[i] == '#')
-        {
-            str[i] = c;
-        }
-        i++;
-    }
+	row = 0;
+	col = 0;
+	board = (char**)malloc(sizeof(char*) * (size + 1));
+	while (row < size)
+	{
+		col = 0;
+		board[row] = (char*)malloc(sizeof(char) * (size + 1)); // or ft_strnew if we leak
+		while (col < size)
+		{
+			board[row][col] = '.';
+			col++;
+		}
+		row++;
+	}
+	board[row] = NULL;
+	return(board);
+}
+
+//***use this function with a size input to account for a larger board
+void	print_board(char **board, int size)
+{
+	int row;
+	int col;
+
+	row = 0;
+	while (row < size)
+	{
+		col = 0;
+		while (col < size)
+		{
+			ft_putchar(board[row][col]);
+			col++;
+		}
+		ft_putchar('\n');
+		row++;
+	}
+}
+
+// free memory for our board when we're finished with it
+void	free_board(char **grid, int size) 
+{
+	int i;
+
+	i = 0;
+	while(i < size)
+	{
+		free(grid[i]);
+		i++;
+	}
+}
+
+int		main(void)
+{
+	char **new_piece;
+	char tet_piece[] = "....\n....\n....\n####\n";
+
+	new_piece = piece_parse(tet_piece, 0, 0);
+	print_board(new_piece, 4);
+	return(0);
 }
 
 /*
 ** copies the strings from pieces onto the board in memory
 */
 
+/*
 char	*board_placement(char *piece, char *board)
 {
 	int i;
@@ -85,156 +143,16 @@ char	*board_placement(char *piece, char *board)
 		{
 			board[i - x] = piece[i];
 			charcount++;
-			// x++;
 		}
 		i++;
 	}
 	return (board);
 }
 
-/* int		main()
+int		main()
 {
 	// int i = 26;
 	printf("%s\n", ft_board(19));
 	return(0);
 }
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-void	freegrid(char **grid, int size) // free memory for our board when we're finished with it
-{
-	int i;
-
-	i = 0;
-	while(i < size)
-	{
-		free(grid[i]);
-		i++;
-	}
-}
-
-int		row_size(char **str) // the size of the row in the 2d array str[x][0]
-{
-	int row;
-
-	row = 0;
-	while(str[row][0])
-		row++;
-	return(row);
-}
-
-int		col_size(char **str) // the size of the colum in the 2d array str[0][y]
-{
-	int col;
-
-	col = 0;
-	while(str[0][col])
-		col++;
-	return(col);
-}
-
-int 	twod_size(char **str) // the size of our 2d array
-{
-	int length;
-
-	length = 0;
-	while(str[length])
-		length++;
-	return(length);
-}
-
-int		piece_size(char **piece) // get the size of each piece, should be 4
-{
-	int i;
-	int size;
-	char sharp;
-
-	i = 0;
-	while(piece[i])
-	{
-		if(piece[i][0] == '#' )
-			size = size + 1;
-		else if(piece[0][i] == '#')
-			size = size + 1;
-		i++;
-	}
-	return(size);
-}
-char	place_piece(int size) // print out piece
-{
-	int i;
-	int row;
-	char piece;
-
-	piece = '#';
-	i = 0;
-	while(i < size)
-		piece[i++];
-	return(piece);
-}
-char	ft_fill(char **pieces, int i, int j) // fill a new 2d array with pieces and print them out
-{
-	char **new_grid;
-	char piece;
-
-	i = row_size(pieces);
-	j = col_size(pieces);
-	piece = place_piece(piece_size(pieces));
-	new_grid = ft_grid(twod_size(pieces));
-	while(new_grid[i][j])
-	{
-
-	}
-	printf("%c\n", piece);
-	return(piece);
-}
-/
-char	**new_2d(char **pieces)
-{
-	char **new_grid;
-	int row;
-	int col;
-
-	new_grid = ft_grid(2d_size(pieces));
-	row = row_size(pieces);
-	col = col_size(pieces);
-
-	if (row < 0 || col < 0)
-		return(ERROR);
-	if (!pieces[row][col])
-		return(ERROR);
-*/

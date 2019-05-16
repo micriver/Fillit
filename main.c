@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/15 18:36:46 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 09:51:40 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char *textarray(char *txt)
 }
 
 // function to seperate every 21 chars into a 2d array
-char **ft_separate(char *str) 
+char **ft_separate(char *str, int *size) 
 {
 	char **dest; // creating our new 2d array
 	char *oldstr;
@@ -62,6 +62,7 @@ char **ft_separate(char *str)
 			break ;
 	}
 	dest[i] = NULL; //adding a null string at the end of the 2d array
+	*size = i;
 	return (dest);
 }
 
@@ -71,7 +72,7 @@ int		main(int ac, char **av)
 	char letter; // this will be our file.txt in argument count
 	char **pieces; // our pieces from input file
 	char *board;
-	// int size;
+	int size;
 	int i;
 
 	i = 0;
@@ -81,9 +82,14 @@ int		main(int ac, char **av)
 		txt = textarray(av[1]); // reads into file and stores whole string into txt
 		if (!checkchars(txt, 0, 0, 0))
 			ERROR;
-		pieces = ft_separate(txt); // then seperate every 21 pieces into different index's
-		board = ft_board(20);
-		while (pieces[i]) // print all of the index's containing the 22 byte strings
+		pieces = ft_separate(txt, &size); // then seperate every 21 pieces into different index's
+		printf("# of pieces is %d\n", size);
+		while (size * size < size * 4)
+			size++;
+		board = ft_board(size);
+
+		// solving function starts here, we pass the board and pieces as parameters
+		while (pieces[i])
 		{
 			if (!checksides(pieces[i])) // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
 				ERROR;
