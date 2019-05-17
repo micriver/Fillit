@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/16 18:11:25 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 21:05:24 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,33 +69,29 @@ char **ft_separate(char *str, int *size)
 int		main(int ac, char **av)
 {
 	char *txt; // this will be our file.txt in argument count
-	char letter; // this will be our file.txt in argument count
 	char **pieces; // our pieces from input file
-	// char *board;
 	int size;
 	int i;
 
 	i = 0;
-	letter = 'A';
 	if (ac == 2) // a.out file.txt
 	{
 		txt = textarray(av[1]); // reads into file and stores whole string into txt
 		if (!checkchars(txt, 0, 0, 0))
 			ERROR;
 		pieces = ft_separate(txt, &size); // then seperate every 21 pieces into different index's
+		piece_check(pieces);
 		while (size * size < size * 4)
 			size++;
-		piece_check(pieces);
 		// solving function starts here, we pass the board and pieces as parameters
-		/* while (pieces[i])
+		
+		
+		
+		while (pieces[i])
 		{
-			if (!checksides(pieces[i])) // if you change this to a number it will print out the correspoding string at that address in our 2d array 4 times
-				ERROR;
-			convert_to_char(pieces[i], letter);
-			letter++;
+			printf("%d.\n%s", i + 1, pieces[i]);
 			i++;
-		} */
-		printf("Here's a piece:\n%s", pieces[0]);
+		}
 	}
 	else
 	{
@@ -105,6 +101,7 @@ int		main(int ac, char **av)
 	return (0);
 }
 
+			// printf("Here's a piece:\n%s", pieces[0]);
 			// printf("%d.\n%s", i + 1, pieces[i]);
 			// size = piece_length(pieces[i]);
 			// printf("\nThe length of the piece is %d.\n", size);
