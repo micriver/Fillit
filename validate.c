@@ -6,11 +6,11 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:33:11 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/13 13:03:01 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 18:05:40 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "fillit.h"
 
 /*
 ** checkchars goes through the string read from input,
@@ -21,6 +21,26 @@
 ** If there's a 21st character, then it needs to be a new line
 ** otherwise, we return FALSE
 */
+
+char		**piece_check(char **str)
+{
+	char **pieces;
+	char letter;
+	int i;
+
+	i = 0;
+	letter = 'A';
+	pieces = str;
+	while (pieces[i])
+	{
+		if (!checksides(pieces[i]))
+			ERROR;
+		convert_to_char(pieces[i], letter);
+		letter++;
+		i++;
+	}
+	return (str);
+}
 
 int		checkchars(char *str, int d, int s, int nl)
 {

@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/16 16:34:57 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 18:10:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	free_board(char **grid, int size)
 	}
 }
 
-int		main(void)
+/* int		main(void)
 {
 	char **new_piece;
 	char tet_piece[] = "....\n....\n....\n####\n";
@@ -141,4 +141,4 @@ int		main(void)
 	new_piece = piece_parse(tet_piece, 0, 0);
 	print_board(new_piece, 4);
 	return(0);
-}
+} */
