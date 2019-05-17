@@ -6,16 +6,49 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/16 16:14:19 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 22:46:07 by brfeltz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+void	copy_piece(char *piece, char **board)
+{
+	int row;
+	int column;
+	int piece;
+	int count;
 
-
-
-
-
-new_piece = piece_parse(tet_piece, 0, 0);
-	print_board(new_piece, 4);
+	row = 0;
+	column = 0;
+	piece = 0;
+	count = 0;
+	while (board[row][column] && board[row][column] != '.') 
+	{
+		if (board[row][column] == '\n') 
+		{
+			row++;
+			column = -1;
+		}
+		column++;
+	}
+	while ((piece[piece] == '.' || piece[piece] == '\n') && piece[piece])
+		piece++;
+	while(board[row][column]) 
+	{
+		if (board[row][column] == '.' && piece[piece] >= 'A' && piece[piece] <= 'Z') 
+		{
+			board[row][column] = piece[piece];
+			count++;
+		}
+		if (board[row][column] == '\n') 
+		{
+			row++;
+			column = -1;
+		}
+		column++;
+		piece++;
+		if (count == 4)
+			break;
+	}
+}
