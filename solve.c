@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/16 22:46:07 by brfeltz          ###   ########.fr       */
+/*   Updated: 2019/05/17 08:50:46 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,4 @@ void	copy_piece(char *piece, char **board)
 			break;
 	}
 }
+
