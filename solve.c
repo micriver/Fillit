@@ -6,23 +6,16 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/16 10:02:08 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 16:14:19 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void    convert_to_char(char *str, char c)
-{
-    int i;
 
-    i = 0;
-    while (str[i] != '\0')
-    {
-        if (str[i] == '#')
-        {
-            str[i] = c;
-        }
-        i++;
-    }
-}
+
+
+
+
+new_piece = piece_parse(tet_piece, 0, 0);
+	print_board(new_piece, 4);

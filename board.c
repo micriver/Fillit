@@ -6,18 +6,36 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/16 15:31:41 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 16:34:57 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
+
+/*
+** convert sharps to letters in string 2D array pieces
+*/
+
+void    convert_to_char(char *str, char c)
+{
+    int i;
+
+    i = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] == '#')
+        {
+            str[i] = c;
+        }
+        i++;
+    }
+}
 
 /*
 ** take a piece string and converts to a 2D piece array
+** row and col will be fed value of 0 for top left corner
 */
 
-//row and col will be fed value of 0
 char	**piece_parse(char *str, int row, int col)
 {
 	char **new_piece;
@@ -46,7 +64,10 @@ char	**piece_parse(char *str, int row, int col)
 	return (new_piece);
 }
 
-//create board in memory
+/*
+** create 2d board in memory
+*/
+
 char	**board_parse(int size)
 {
 	char **board;
@@ -71,7 +92,12 @@ char	**board_parse(int size)
 	return(board);
 }
 
-//***use this function with a size input to account for a larger board
+/*
+** print 2d board from memory
+*/
+
+//This might have to be slightly modified 
+//to print out the final smallest square
 void	print_board(char **board, int size)
 {
 	int row;
@@ -91,7 +117,10 @@ void	print_board(char **board, int size)
 	}
 }
 
-// free memory for our board when we're finished with it
+/*
+** free memory for our board when we're finished with it
+*/
+
 void	free_board(char **grid, int size) 
 {
 	int i;
@@ -113,46 +142,3 @@ int		main(void)
 	print_board(new_piece, 4);
 	return(0);
 }
-
-/*
-** copies the strings from pieces onto the board in memory
-*/
-
-/*
-char	*board_placement(char *piece, char *board)
-{
-	int i;
-	int x;
-	int charcount;
-	
-	i = 0;
-	x = 0;
-	charcount = 0;
-	while (piece[i] != '\0')
-	{
-		if (piece[i] != '.' && piece[i] != '\n')
-		{
-			x = i;
-			break ;
-		}
-		i++;
-	}
-	while (piece[i] != '\0' && charcount != 4)
-	{
-		if (piece[i] != '.' && piece[i] != '\n')
-		{
-			board[i - x] = piece[i];
-			charcount++;
-		}
-		i++;
-	}
-	return (board);
-}
-
-int		main()
-{
-	// int i = 26;
-	printf("%s\n", ft_board(19));
-	return(0);
-}
- */

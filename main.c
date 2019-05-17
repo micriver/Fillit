@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 10:30:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/16 09:51:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 17:30:39 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,8 @@ int		main(int ac, char **av)
 		if (!checkchars(txt, 0, 0, 0))
 			ERROR;
 		pieces = ft_separate(txt, &size); // then seperate every 21 pieces into different index's
-		printf("# of pieces is %d\n", size);
 		while (size * size < size * 4)
 			size++;
-		board = ft_board(size);
-
 		// solving function starts here, we pass the board and pieces as parameters
 		while (pieces[i])
 		{
@@ -95,7 +92,6 @@ int		main(int ac, char **av)
 				ERROR;
 			convert_to_char(pieces[i], letter);
 			letter++;
-			board_placement(pieces[i], board);
 			i++;
 		}
 		printf("Here's the final board with a piece on it\n%s", board);

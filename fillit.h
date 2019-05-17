@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/15 11:14:38 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/16 16:18:05 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,22 @@
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 
-int     piece_index(char *str);
-int		checkchars(char *str, int d, int s, int nl);
-int		checksides(char *str);
-char	*ft_board(int size);
-void    convert_to_char(char *str, char c);
-char    *board_placement(char *piece, char *board);
-int     piece_length(char *str);
-
 /*
-** temp functions
+** Validation
 */
 
-void	freegrid(char **grid, int size);
-int     row_size(char **str);
-int		col_size(char **str);
-int		twod_size(char **str);
-int		piece_size(char **piece);
-char	place_piece(int size);
-char	ft_fill(char **pieces, int i, int j);
+int		checkchars(char *str, int d, int s, int nl);
+int		checksides(char *str);
+
+/*
+** Board management
+*/
+
+void    convert_to_char(char *str, char c);
+char	**piece_parse(char *str, int row, int col);
+char	**board_parse(int size);
+char    *board_placement(char *piece, char *board);
+void	print_board(char **board, int size);
+void	free_board(char **grid, int size);
 
 #endif
