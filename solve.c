@@ -6,50 +6,86 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/17 08:50:46 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/17 22:43:47 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	copy_piece(char *piece, char **board)
-{
-	int row;
-	int column;
-	int piece;
-	int count;
+/*
+** convert sharps to letters in string 2D array pieces
+*/
 
-	row = 0;
-	column = 0;
-	piece = 0;
-	count = 0;
-	while (board[row][column] && board[row][column] != '.') 
+void	convert_to_char(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (board[row][column] == '\n') 
-		{
-			row++;
-			column = -1;
-		}
-		column++;
-	}
-	while ((piece[piece] == '.' || piece[piece] == '\n') && piece[piece])
-		piece++;
-	while(board[row][column]) 
-	{
-		if (board[row][column] == '.' && piece[piece] >= 'A' && piece[piece] <= 'Z') 
-		{
-			board[row][column] = piece[piece];
-			count++;
-		}
-		if (board[row][column] == '\n') 
-		{
-			row++;
-			column = -1;
-		}
-		column++;
-		piece++;
-		if (count == 4)
-			break;
+		if (str[i] == '#')
+			str[i] = c;
+		i++;
 	}
 }
 
+void	pickup(char **board, char c)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (board[i])
+	{
+		j = 0;
+		while (board[i][j])
+		{
+			if (board[i][j] == c)
+				board[i][j] = '.';
+			j++;
+		}
+		i++;
+	}
+}
+
+int		backtrack(char **board, char **pieces, char c)
+{
+	int		i;
+	int		j;
+	char	letter;
+
+	i = -1;
+	letter = c;
+	while (board[++i])
+	{
+		j = -1;
+		while (board[i][++j])
+		{
+			if (!place(pieces[0], board, j) || !solve(board, &pieces[1]))
+				pickup(board, letter);
+			else
+				return (1);
+		}
+	}
+	return (0);
+}
+
+int		solve(char **board, char **pieces)
+{
+	int		i;
+	char	letter;
+
+	i = -1;
+	letter = '\0';
+	if (!pieces[0])
+		return (1);
+	while (pieces[0][++i])
+	{
+		if (pieces[0][i] >= 64)
+		{
+			letter = pieces[0][i];
+			break ;
+		}
+	}
+	return (backtrack(board, pieces, letter)) ? 1 : 0;
+}
