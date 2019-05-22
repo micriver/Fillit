@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/22 12:46:01 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/22 12:54:09 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	free_board(char **grid, int size);
 */
 
 int		nlmove(char *str, char **board);
-int		place(char *piece, char **board, int j);
+int		place(char *piece, char **board, int j, int c);
 void	pickup(char **board, char c);
 int		solve(char **board, char **pieces);
 int		backtrack(char **board, char **pieces, char c);

@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/22 12:46:16 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/22 12:53:51 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		backtrack(char **board, char **pieces, char c)
 		j = -1;
 		while (board[i][++j])
 		{
-			if (!place(pieces[0], board, j) || !solve(board, &pieces[1]))
+			if (!place(pieces[0], board, j, 0) || !solve(board, &pieces[1]))
 				pickup(board, letter);
 			else
 				return (1);

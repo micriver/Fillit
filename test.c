@@ -4,59 +4,60 @@
 
 int g_size = 3;
 
-int		place(char *piece, char **board, int j)
+void    repos(char **board, int *i, int *j)
 {
-	int i;
-	int c;
-	int k;
-	int x;
+    int x;
 
-	i = 0;
-	c = 0;
-	k = 0;
-	while (piece[k] && piece[k] < 64)
-		k++;
-	while (board[i][j] != '.' && board[i][j++])
-	{
-		if (!board[i][j])
-		{
-			i++;
-			j = 0;
-		}
-	}
-	while (board[i] && piece[k])
-	{
-		if (piece[k] >= 'A' && piece[k] <= 'Z' && board[i][j] != '.')
-			return (0);
-		if (piece[k] >= 'A' && piece[k] <= 'Z' && board[i][j] == '.')
-		{
-			board[i][j] = piece[k];
-			c++;
-		}
-		if (c == 4)
-			return (1);
-		j++;
-		if (piece[k] == '\n')
-		{
-			x = 0;
-			while (x++ < g_size - 4)
-			{
-				if (!board[i][j])
-				{
-					i++;
-					j = 0;
-				}
-				j++;
-			}
-		}
-		k++;
-		if (!board[i][j])
-		{
-			i++;
-			j = 0;
-		}
-	}
-	return (0);
+    x = 0;
+    while (x++ < g_size - 4)
+    {
+        if (!board[*i][*j])
+        {
+            *i += 1;
+            *j = 0;
+        }
+        *j += 1;
+    }
+}
+
+int		place(char *piece, char **board, int j, int c)
+{
+    int i;
+    int k;
+
+    i = 0;
+    k = 0;
+    while (piece[k] && piece[k] < 64)
+        k++;
+    while (board[i][j] != '.' && board[i][j++])
+        if (!board[i][j])
+        {
+            i++;
+            j = 0;
+        }
+    while (board[i] && piece[k])
+    {
+        if (piece[k] >= 'A' && piece[k] <= 'Z')
+        {
+            if (board[i][j] != '.')
+                return (0);
+            board[i][j] = piece[k];
+            c++;
+            if (c == 4)
+                return (1);
+
+        }
+        j++;
+        if (piece[k] == '\n')
+            repos(board, &i, &j);
+        if (!board[i][j])
+        {
+            i++;
+            j = 0;
+        }
+        k++;
+    }
+    return (0);
 }
 
 /* int		drop(char *piece, char **board, int j)
