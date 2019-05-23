@@ -20,6 +20,52 @@ void    repos(char **board, int *i, int *j)
     }
 }
 
+// char	**spot_return(char **board, int i, int j)
+// {
+// 	while (board[i][j] != '.' && board[i][j++]) // while the board's current coordinate is a letter, and while we iterate through the board's columns
+//         if (!board[i][j]) //if we get to the end of the row's columns and they're full of letters, move to the next row
+//         {
+//             i++; //move to the next row 
+//             j = 0; //start at the beginning of the next column
+//         }
+// 	return (board);
+// }
+
+
+/* int		value_placement(char **str, char *str2, int c)
+{
+	int k;
+	int i;
+	int j;
+	
+	while (str[i] && str2[k])
+    {
+        if (str2[k] >= 'A' && str2[k] <= 'Z')
+        {
+            if (str[i][j] != '.')
+                return (0);
+            str[i][j] = str2[k];
+            c++;
+            if (c == 4)
+                return (1);
+
+        }
+        j++;
+        if (str2[k] == '\n')
+            repos(str, &i, &j);
+        if (!str[i][j])
+        {
+            i++;
+            j = 0;
+        }
+        k++;
+    }
+    return (0);
+}
+value_placement(board[i], piece[k], c);	 */
+
+
+
 int		place(char *piece, char **board, int j, int c)
 {
     int i;
@@ -27,13 +73,15 @@ int		place(char *piece, char **board, int j, int c)
 
     i = 0;
     k = 0;
-    while (piece[k] && piece[k] < 64)
+    while (piece[k] && piece[k] < 64) // iterate through the piece, and if the piece is not a letter
         k++;
-    while (board[i][j] != '.' && board[i][j++])
-        if (!board[i][j])
+    // lines below move the placement location over already placed letters
+    // board = spot_return(board, i, j);
+	while (board[i][j] != '.' && board[i][j++]) // while the board's current coordinate is a letter, and while we iterate through the board's columns
+        if (!board[i][j]) //if we get to the end of the row's columns and they're full of letters, move to the next row
         {
-            i++;
-            j = 0;
+            i++; //move to the next row 
+            j = 0; //start at the beginning of the next column
         }
     while (board[i] && piece[k])
     {
