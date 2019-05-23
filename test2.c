@@ -105,15 +105,15 @@ int		place(char *piece, char **board, int j, int c)
     k = 0;
     while (piece[k] && piece[k] < 64) // iterate through the piece, and if the piece is not a letter
         k++; // lines below move the placement location over already placed letters
-	while (board[i][j] != '.' && board[i][j++])// while the board's current coordinate is a letter, and while we iterate through the board's columns
+	while (board[i][j] != '.' && board[i][j])// while the board's current coordinate is a letter, and while we iterate through the board's columns
 	{
-
-	} 
         if (!board[i][j]) //if we get to the end of the row's columns and they're full of letters, move to the next row
 		{
             i++;
             j = 0;
         }
+        j++;
+	} 
 	place2(piece, board, j, c);
     return (0);
 }
