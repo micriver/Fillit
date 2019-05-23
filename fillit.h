@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: michaelrivera <michaelrivera@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/22 12:57:50 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/23 14:02:57 by michaelrive      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define USAGE ft_putstr("usage: fillit input_file\n")
 # define ERROR {ft_putstr("error\n"); exit(0);}
+# define MVDWNROW {i++; j = 0;}
 
 # include <stdlib.h>
 # include <string.h>

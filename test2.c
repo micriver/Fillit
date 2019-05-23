@@ -65,6 +65,37 @@ void    repos(char **board, int *i, int *j) //dereferences the values in the sta
 // }
 // value_placement(board[i], piece[k], c);	
 
+int	place2(char *piece, char **board, int j, int c)
+{
+	int i;
+	int k;
+
+	i = 0;
+	k = 0;
+	while (board[i] && piece[k])
+		{
+			if (piece[k] >= 'A' && piece[k] <= 'Z') //if we find a character in the current index
+			{
+				if (board[i][j] != '.') //if the current index of the board, does not equal a dot, we've filled the board and need to go back and increase it
+					return (0);
+				board[i][j] = piece[k]; //otherwise, place the current character
+				c++; //increase the char count
+				if (c == 4) //if the # of characters is four, a tetrimino, then return 1
+					return (1);
+			}
+			j++; // if we dont find a char in the first line of the piece that we're looking at, move ahead to a new line
+			if (piece[k] == '\n')
+				repos(board, &i, &j); //move the current base string index that we're at to another row and column
+			if (!board[i][j]) //????
+			{
+				i++;
+				j = 0;
+			}
+			k++; //increase the index of the current PIECE we're on in the while loop
+		}
+		return (0);
+}
+
 int		place(char *piece, char **board, int j, int c)
 {
     int i;
@@ -73,39 +104,19 @@ int		place(char *piece, char **board, int j, int c)
     i = 0;
     k = 0;
     while (piece[k] && piece[k] < 64) // iterate through the piece, and if the piece is not a letter
-        k++;
-    // lines below move the placement location over already placed letters
-	while (board[i][j] != '.' && board[i][j++]) // while the board's current coordinate is a letter, and while we iterate through the board's columns
-        if (!board[i][j]) //if we get to the end of the row's columns and they're full of letters, move to the next row
-        {
-            i++; //move to the next row 
-            j = 0; //start at the beginning of the next column
-        }
-    while (board[i] && piece[k]) //while we iterate through the board's rows at its first column spot and the current piece's index
-    {
-        if (piece[k] >= 'A' && piece[k] <= 'Z') //if we find a character in the current index
-        {
-            if (board[i][j] != '.') //if the current index of the board, does not equal a dot, we've filled the board and need to go back and increase it
-                return (0);
-            board[i][j] = piece[k]; //otherwise, place the current character
-            c++; //increase the char count
-            if (c == 4) //if the # of characters is four, a tetrimino, then return 1
-                return (1);
+        k++; // lines below move the placement location over already placed letters
+	while (board[i][j] != '.' && board[i][j++])// while the board's current coordinate is a letter, and while we iterate through the board's columns
+	{
 
-        }
-        j++; // if we dont find a char in the first line of the piece that we're looking at, move ahead to a new line
-        if (piece[k] == '\n')
-            repos(board, &i, &j); //move the current base string index that we're at to another row and column
-        if (!board[i][j]) //????
-        {
+	} 
+        if (!board[i][j]) //if we get to the end of the row's columns and they're full of letters, move to the next row
+		{
             i++;
             j = 0;
         }
-        k++; //increase the index of the current PIECE we're on in the while loop
-    }
+	place2(piece, board, j, c);
     return (0);
 }
-
 
 /* int		drop(char *piece, char **board, int j)
 {
