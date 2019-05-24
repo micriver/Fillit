@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/24 12:48:47 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/24 13:10:47 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char	**piece_check(char **str);
 void	convert_to_char(char *str, char c);
 // char	**builder(int g_size);
 // void	print_board(char **board, int size);
-void	free_board(char **grid, int size);
 
 /*
 ** Solve
@@ -66,7 +65,7 @@ char	*builder(int g_size);
 
 int		solve(char *board, char **pieces);
 int		backtrack(char *board, char **pieces, char letter);
-int		place(char *piece, char *board);
+int		place(char *piece, char *board, int charcount);
 void	pickup(char *board, char c);
 
 
