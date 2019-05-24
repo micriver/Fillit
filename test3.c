@@ -6,7 +6,7 @@ int g_size = 2; //start out @ 2 for the smallest possible square piece board
 
 void    repos(char *board, int *i) //dereferences the values in the stack and doesn't return anything
 {
-	while (*i< (g_size + 4))
+	while (*i< (g_size * 4))
 	{
 		// if (board[*i] == '.') //when we get to a terminating char for our board
 		// 	*i += 1; //move down a row
@@ -37,7 +37,7 @@ int		place(char *piece, char *board, int charcount)
 			if (board[i] != '.') //if the current index of the board, does not equal a dot, we've filled the board and need to go back and increase the g_size
 				return (0);
 			board[i] = piece[k]; //otherwise, place the current character at the board's current empty index
-			(charcount == 4) ? 1 : charcount++; //increase the charcount if its not four, otherwise, exit placement with a TRUE confirmation
+			(charcount + 1 == 4) ? 1 : charcount++; //increase the charcount if its not four, otherwise, exit placement with a TRUE confirmation
 		}
 		if (piece[k] == '\n')
 			repos(board, &i); //move the current base string index that we're at to another row and column on the board following the index of the piece's board
@@ -100,7 +100,8 @@ int main() {
 	// pieces[4] = "..EE\n.EE.\n....\n....\n";
 	// pieces[5] = "....\n....\n..FF\n..FF\n";
 	pieces[1] = NULL;
-	while (!solve(board, pieces)) {
+	while (!solve(board, pieces)) 
+	{
 		g_size++;
 		free(board);
 		board = builder(g_size);
