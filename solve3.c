@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/24 11:08:05 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/24 12:51:41 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,42 +29,37 @@ void	convert_to_char(char *str, char c)
 	}
 }
 
-void	pickup(char **board, char c)
+void	pickup(char *board, char c)
 {
 	int i;
-	int j;
 
 	i = 0;
 	while (board[i])
 	{
-		j = 0;
-		while (board[i][j])
-		{
-			if (board[i][j] == c)
-				board[i][j] = '.';
-			j++;
-		}
+		if (board[i] == c)
+			board[i] = '.';
 		i++;
 	}
 }
 
-int		backtrack(char *board, char **pieces, char c)
+int		backtrack(char *board, char **pieces, char letter)
 {
 	int		i;
 
-	(void)pieces;
-	(void)c;
 	i = -1;
+	// ft_putstr(board);
+	// ft_putchar('\n');
+	// ft_putstr(pieces[0]);
+	// ft_putchar('\n');
 	while (board[i])
 	{
-		ft_putchar(board[i]);
-		// if (!place(pieces[0], board, j, 0) || !solve(board, &pieces[1]))
-			// pickup(board, c);
-		// else
-			// return (1);
+		if (!place(pieces[0], board) || !solve(board, &pieces[1]))
+			pickup(board, letter);
+		else
+			return (1);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int		solve(char *board, char **pieces)
@@ -91,8 +86,18 @@ int		main(void)
 {
 	int g_size = 2;
 	char *board;
-	
+
+	char **pieces = (char**)malloc(sizeof(char*) * 6);
+	pieces[0] = "A...\nA...\nA...\nA...\n";
+	pieces[1] = "...B.\n.BBB\n....\n....\n";
+	pieces[2] = "C...\nC...\nCC..\n....\n";
+	pieces[3] = "D...\nD...\nDD..\n....\n";
+	pieces[4] = "..EE\n.EE.\n....\n....\n";
+	// pieces[5] = "....\n....\n..FF\n..FF\n";
+	pieces[5] = NULL;
 	board = (builder(g_size));
+	solve(board, pieces);
+	
 // 	ft_putstr(board);
 // 	free(board);
 // 	return (0);
