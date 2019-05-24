@@ -42,10 +42,11 @@ int		place(char *piece, char *board, int charcount)
 		if (piece[k] == '\n')
 			repos(board, &i); //move the current base string index that we're at to another row and column on the board following the index of the piece's board
 		k++; //increase the index of the current PIECE we're on in the while loop
-		if (board[i + 1] == '\0') {
-			g_size++;
-			board = builder(g_size);
-		}
+		// if (board[i + 1] == '\0' && charcount < 4) 
+		// {
+		// 	g_size++;
+		// 	board = builder(g_size);
+		// }
 	}
 	return (0);
 }
@@ -93,17 +94,18 @@ int main() {
 	char **pieces = (char**)malloc(sizeof(char*) * 6);
 	char *board = builder(g_size);
 	pieces[0] = "A...\nA...\nA...\nA...\n";
-	pieces[1] = "...B.\n.BBB\n....\n....\n";
-	pieces[2] = "C...\nC...\nCC..\n....\n";
-	pieces[3] = "D...\nD...\nDD..\n....\n";
-	pieces[4] = "..EE\n.EE.\n....\n....\n";
+	// pieces[1] = "...B.\n.BBB\n....\n....\n";
+	// pieces[2] = "C...\nC...\nCC..\n....\n";
+	// pieces[3] = "D...\nD...\nDD..\n....\n";
+	// pieces[4] = "..EE\n.EE.\n....\n....\n";
 	// pieces[5] = "....\n....\n..FF\n..FF\n";
-	pieces[5] = NULL;
+	pieces[1] = NULL;
 	while (!solve(board, pieces)) {
-		// g_size++;
-		// board = builder(g_size);
+		g_size++;
+		free(board);
+		board = builder(g_size);
 	}
-	// for (int i = 0; board[i]; i++)
-		// printf("%c", board[i]);
+	for (int i = 0; board[i]; i++)
+		printf("%c", board[i]);
 	return (0);
 }

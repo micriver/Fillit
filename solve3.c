@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/24 13:50:11 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/24 15:02:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,25 @@ void	convert_to_char(char *str, char c)
 	}
 }
 
-void	pickup(char *board, char c)
+int		pickup(char *board, char c)
 {
 	int i;
+	int charcount;
 
 	i = 0;
+	charcount = 0;
 	while (board[i])
 	{
 		if (board[i] == c)
+		{
 			board[i] = '.';
+			charcount++;
+		}
 		i++;
 	}
+	//if we place a piece and after looking for THAT piece's character
+	//and can't find more than that piece's
+	return (charcount < 4) ? 0 : 1; 
 }
 
 int		backtrack(char *board, char **pieces, char letter)
@@ -51,12 +59,21 @@ int		backtrack(char *board, char **pieces, char letter)
 	while (board[++i])
 	{
 		if (!place(pieces[0], board, 0) || !solve(board, &pieces[1]))
-			pickup(board, letter);
+		{
+			if (!pickup(board, letter))
+				return (0);
+			// {
+			// 	g_size++;
+			// 	board = builder(g_size);
+			// }
+			else
+				pickup(board, letter);
+		}
 		else
 			return (1);
 		// i++;
 	}
-	return (1);
+	return (0);
 }
 
 int		solve(char *board, char **pieces)
@@ -66,7 +83,7 @@ int		solve(char *board, char **pieces)
 
 	i = -1;
 	letter = '\0';
-	if (!pieces[0])
+	if (!pieces[0]) //if we're at the NULL piece in the 2D array - the end...
 		return (1);
 	while (pieces[0][++i])
 	{
@@ -76,7 +93,7 @@ int		solve(char *board, char **pieces)
 			break ;
 		}
 	}
-	return (backtrack(board, pieces, letter)) ? 1 : 0;
+	return (!backtrack(board, pieces, letter)) ? 0 : 1;
 }
 
 /* int		main(void)
