@@ -37,7 +37,6 @@ int		place(char *piece, char *board, int charcount)
 			if (board[i] != '.') //if the current index of the board, does not equal a dot, we've filled the board and need to go back and increase the g_size
 				return (0);
 			board[i] = piece[k]; //otherwise, place the current character at the board's current empty index
-
 			charcount++; //increase the charcount if its not four, otherwise, exit placement with a TRUE confirmation
 			if (charcount == 4)
 				return 1;
@@ -92,12 +91,12 @@ int main() {
 	char **pieces = (char**)malloc(sizeof(char*) * 6);
 	char *board = builder(g_size);
 	pieces[0] = "A...\nA...\nA...\nA...\n";
-	// pieces[1] = "...B.\n.BBB\n....\n....\n";
+	pieces[1] = "..B.\n.BBB\n....\n....\n";
 	// pieces[2] = "C...\nC...\nCC..\n....\n";
 	// pieces[3] = "D...\nD...\nDD..\n....\n";
 	// pieces[4] = "..EE\n.EE.\n....\n....\n";
 	// pieces[5] = "....\n....\n..FF\n..FF\n";
-	pieces[1] = NULL;
+	pieces[2] = NULL;
 	while (!solve(board, pieces)) 
 	{
 		g_size++;

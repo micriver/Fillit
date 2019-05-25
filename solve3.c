@@ -6,11 +6,12 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/25 00:22:00 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/25 01:06:50 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 /*
 ** convert sharps to letters in string 2D array pieces
@@ -36,6 +37,7 @@ int		pickup(char *board, char c)
 
 	i = 0;
 	charcount = 0;
+	// printf("%c\n", c);
 	while (board[i])
 	{
 		if (board[i] == c)
@@ -62,9 +64,8 @@ int		backtrack(char *board, char **pieces, char letter)
 		{
 			if (!pickup(board, letter))
 				return (0);
-			else
-				return (1);
 		}
+		return (1);
 	}
 	return (0);
 }
