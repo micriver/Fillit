@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: michaelrivera <michaelrivera@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/24 15:02:52 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/25 00:12:25 by michaelrive      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,9 @@ int		backtrack(char *board, char **pieces, char letter)
 		{
 			if (!pickup(board, letter))
 				return (0);
-			// {
-			// 	g_size++;
-			// 	board = builder(g_size);
-			// }
 			else
-				pickup(board, letter);
+				return (1);
 		}
-		else
-			return (1);
-		// i++;
 	}
 	return (0);
 }

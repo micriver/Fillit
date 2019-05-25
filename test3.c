@@ -37,16 +37,13 @@ int		place(char *piece, char *board, int charcount)
 			if (board[i] != '.') //if the current index of the board, does not equal a dot, we've filled the board and need to go back and increase the g_size
 				return (0);
 			board[i] = piece[k]; //otherwise, place the current character at the board's current empty index
-			(charcount + 1 == 4) ? 1 : charcount++; //increase the charcount if its not four, otherwise, exit placement with a TRUE confirmation
+			charcount++; //increase the charcount if its not four, otherwise, exit placement with a TRUE confirmation
+			if (charcount == 4)
+				return 1;
 		}
 		if (piece[k] == '\n')
 			repos(board, &i); //move the current base string index that we're at to another row and column on the board following the index of the piece's board
 		k++; //increase the index of the current PIECE we're on in the while loop
-		// if (board[i + 1] == '\0' && charcount < 4) 
-		// {
-		// 	g_size++;
-		// 	board = builder(g_size);
-		// }
 	}
 	return (0);
 }
@@ -103,10 +100,10 @@ int main() {
 	while (!solve(board, pieces)) 
 	{
 		g_size++;
-		free(board);
 		board = builder(g_size);
 	}
 	for (int i = 0; board[i]; i++)
 		printf("%c", board[i]);
+	// free(board);
 	return (0);
 }
