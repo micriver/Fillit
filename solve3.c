@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: michaelrivera <michaelrivera@student.42    +#+  +:+       +#+        */
+/*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/05/24 17:12:02 by brfeltz          ###   ########.fr       */
-=======
-/*   Updated: 2019/05/25 00:12:25 by michaelrive      ###   ########.fr       */
->>>>>>> b39028bc5f48f8d3f6a3aa8e6ef5b38bf7d1ef10
+/*   Updated: 2019/05/25 00:22:00 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

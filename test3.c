@@ -37,13 +37,10 @@ int		place(char *piece, char *board, int charcount)
 			if (board[i] != '.') //if the current index of the board, does not equal a dot, we've filled the board and need to go back and increase the g_size
 				return (0);
 			board[i] = piece[k]; //otherwise, place the current character at the board's current empty index
-<<<<<<< HEAD
-			(charcount == 4) ? 1 : charcount++; //increase the charcount if its not four, otherwise, exit placement with a TRUE confirmation
-=======
+
 			charcount++; //increase the charcount if its not four, otherwise, exit placement with a TRUE confirmation
 			if (charcount == 4)
 				return 1;
->>>>>>> b39028bc5f48f8d3f6a3aa8e6ef5b38bf7d1ef10
 		}
 		if (piece[k] == '\n')
 			repos(board, &i); //move the current base string index that we're at to another row and column on the board following the index of the piece's board
