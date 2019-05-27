@@ -19,7 +19,7 @@ void    repos(char *board, int *i) //dereferences the values in the stack and do
 	}
 }
 
-int		place(char *piece, char *board, int charcount)
+int		place(char *piece, char *board, char letter)
 {
 	int i;
 	int k;
@@ -37,66 +37,50 @@ int		place(char *piece, char *board, int charcount)
 			if (board[i] != '.') //if the current index of the board, does not equal a dot, we've filled the board and need to go back and increase the g_size
 				return (0);
 			board[i] = piece[k]; //otherwise, place the current character at the board's current empty index
-			charcount++; //increase the charcount if its not four, otherwise, exit placement with a TRUE confirmation
-			if (charcount == 4)
-				return 1;
 		}
 		if (piece[k] == '\n')
 			repos(board, &i); //move the current base string index that we're at to another row and column on the board following the index of the piece's board
 		k++; //increase the index of the current PIECE we're on in the while loop
 	}
-	return (0);
+	return (placement_check(board, letter)) ? 1 : 0;
 }
 
-/* {
-	int i;
-	int k;
+int		placement_check(char *piece, char c)
+{
+	int		i;
+	int		sidecount;
+	int		charcount;
 
 	i = 0;
-	k = 0;
-	while (piece[k] && piece[k] < 64) // iterate through the piece, and if the piece is not a letter
-		k++;
-	while (board[i][j] != '.' && board[i][j++]) // while the board's current coordinate is a letter, and while we iterate through the board's columns
-		if (!board[i][j]) //if we get to the end of the row's columns and they're full of letters, move to the next row
-		{
-			i++; //move to the next row 
-			j = 0; //start at the beginning of the next column
-		}
-	while (board[i] && piece[k]) //while we iterate through the board's rows at its first column spot and the current piece's index
+	sidecount = 0;
+	charcount = 0;
+	while (piece[i])
 	{
-		if (piece[k] >= 'A' && piece[k] <= 'Z') //if we find a character in the current index
+		if (piece[i] == c)
 		{
-			if (board[i][j] != '.') //if the current index of the board, does not equal a dot, we've filled the board and need to go back and increase it
-				return (0);
-			board[i][j] = piece[k]; //otherwise, place the current character
-			c++; //increase the char count
-			if (c == 4) //if the # of characters is four, a tetrimino, then return 1
-				return (1);
+			(piece[i + 1] == c) ? sidecount++ : sidecount;
+			(piece[i + 5] == c) ? sidecount++ : sidecount;
+			(piece[i - 1] == c) ? sidecount++ : sidecount;
+			(piece[i - 5] == c) ? sidecount++ : sidecount;
+			charcount++;
+			if(charcount == 4)
+				break ;
 		}
-		j++; // if we dont find a char in the first line of the piece that we're looking at, move ahead to a new line
-		if (piece[k] == '\n')
-			repos(board, &i, &j); //move the current base string index that we're at to another row and column
-		if (!board[i][j]) //????
-		{
-			i++;
-			j = 0;
-		}
-		k++; //increase the index of the current PIECE we're on in the while loop
+		i++;
 	}
-	return (0);
-} */
-
+	return ((sidecount == 6 || sidecount == 8) && charcount == 4) ? 1 : 0;
+}
 
 int main() {
 	char **pieces = (char**)malloc(sizeof(char*) * 6);
 	char *board = builder(g_size);
 	pieces[0] = "A...\nA...\nA...\nA...\n";
-	pieces[1] = "..B.\n.BBB\n....\n....\n";
+	// pieces[1] = "..B.\n.BBB\n....\n....\n";
 	// pieces[2] = "C...\nC...\nCC..\n....\n";
 	// pieces[3] = "D...\nD...\nDD..\n....\n";
 	// pieces[4] = "..EE\n.EE.\n....\n....\n";
 	// pieces[5] = "....\n....\n..FF\n..FF\n";
-	pieces[2] = NULL;
+	pieces[1] = NULL;
 	while (!solve(board, pieces)) 
 	{
 		g_size++;

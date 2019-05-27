@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/25 01:06:50 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/27 09:39:58 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,17 @@ int		backtrack(char *board, char **pieces, char letter)
 
 	i = -1;
 	
-	while (board[++i])
+	printf("This is what the board looks like right now:\n%s\n", board);
+	while (board[++i] != '\0')
 	{
-		if (!place(pieces[0], board, 0) || !solve(board, &pieces[1]))
+		printf("The empty board's current index is: %d\n", i);
+		if (!place(pieces[0], board, letter) || !solve(board, &pieces[1]))
 		{
 			if (!pickup(board, letter))
 				return (0);
 		}
-		return (1);
+		else
+			return (1);
 	}
 	return (0);
 }
@@ -87,7 +90,7 @@ int		solve(char *board, char **pieces)
 			break ;
 		}
 	}
-	return (!backtrack(board, pieces, letter)) ? 0 : 1;
+	return (backtrack(board, pieces, letter)) ? 1 : 0;
 }
 
 /* int		main(void)
