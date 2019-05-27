@@ -28,7 +28,7 @@ int		place(char *piece, char *board, char letter)
 	k = 0;
 	while (piece[k] && piece[k] < 64) //iterate through the piece until we get to a letter
 		k++;
-	while (board[i] != '.' && board[i]) //this is for when the board is full of pieces from prior loops
+	while (board[i] != '.' && board[i])	//this is for when the board is full of pieces from prior loops
 		i += k;
 	while (board[i] && piece[k]) //while we iterate through the board's indexes and the current piece's indexes
 	{
@@ -77,7 +77,7 @@ int main() {
 	char *board = builder(g_size);
 	pieces[0] = "A...\nA...\nA...\nA...\n";
 	pieces[1] = "..B.\n.BBB\n....\n....\n";
-	pieces[2] = "C...\nC...\nCC..\n....\n";
+	pieces[2] = "....\n....\n..CC\n..CC\n";
 	// pieces[3] = "D...\nD...\nDD..\n....\n";
 	// pieces[4] = "..EE\n.EE.\n....\n....\n";
 	// pieces[5] = "....\n....\n..FF\n..FF\n";
