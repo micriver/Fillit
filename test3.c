@@ -33,7 +33,7 @@ int		place(char *piece, char *board, char letter)
 	while (board[i] && piece[k]) //while we iterate through the board's indexes and the current piece's indexes
 	{
 		if (piece[k] >= 'A' && piece[k] <= 'Z' && board[i] != '.') //if we find a character in the current piece's index
-				return (0);
+				i++;
 		if (piece[k] >= 'A' && piece[k] <= 'Z' && board[i] == '.') //if the current index of the board, does not equal a dot, we've filled the board and need to go back and increase the g_size
 			board[i] = piece[k]; //otherwise, place the current character at the board's current empty index
 		if (piece[k] == '\n')
@@ -77,11 +77,11 @@ int main() {
 	char *board = builder(g_size);
 	pieces[0] = "A...\nA...\nA...\nA...\n";
 	pieces[1] = "..B.\n.BBB\n....\n....\n";
-	// pieces[2] = "C...\nC...\nCC..\n....\n";
+	pieces[2] = "C...\nC...\nCC..\n....\n";
 	// pieces[3] = "D...\nD...\nDD..\n....\n";
 	// pieces[4] = "..EE\n.EE.\n....\n....\n";
 	// pieces[5] = "....\n....\n..FF\n..FF\n";
-	pieces[2] = NULL;
+	pieces[3] = NULL;
 	while (!solve(board, pieces)) 
 	{
 		g_size++;
