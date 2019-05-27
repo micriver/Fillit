@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/27 09:39:58 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/27 11:29:41 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,28 @@ int		backtrack(char *board, char **pieces, char letter)
 	i = -1;
 	
 	printf("This is what the board looks like right now:\n%s\n", board);
-	while (board[++i] != '\0')
+	printf("Current piece to be placed:\n%s\n", pieces[0]);
+	while (board[++i])
 	{
-		printf("The empty board's current index is: %d\n", i);
-		if (!place(pieces[0], board, letter) || !solve(board, &pieces[1]))
+		if (!place(pieces[0], board, letter))
+			return (0);
+		if (!solve(board, &pieces[1]))
 		{
-			if (!pickup(board, letter))
-				return (0);
+				printf("%d piece has been placed\n", i + 1);
+				pickup(board, letter);
 		}
+		// printf("The empty board's current index is: %d\n", i);
+		//if we place the current piece but its incorrect and there's still space on the board, increment the board index
+		// if (!place(pieces[0], board, letter))
+		// 	return (0);
+		// {
+		// 	pickup(board, letter);
+		// 	i++;
+		// 	place(pieces[0], board, letter);
+		// }
+		//here, its placing the piece AGAIN on top of the other piece then removing it and printing a blank board
 		else
+			printf("This is what the board looks like after placement:\n%s\n", board);
 			return (1);
 	}
 	return (0);

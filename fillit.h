@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/27 09:37:47 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/27 09:52:59 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define USAGE ft_putstr("usage: fillit input_file\n")
 # define ERROR {ft_putstr("error\n"); exit(0);}
-# define MVDWNROW {i++; j = 0;}
 
 # include <stdlib.h>
 # include <string.h>
