@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/27 09:52:59 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/28 19:16:14 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		solve(char *board, char **pieces);
 int		backtrack(char *board, char **pieces, char letter);
 int		place(char *piece, char *board, char letter);
 int		placement_check(char *piece, char c);
-int     pickup(char *board, char c);
+void    pickup(char *board, char c);
 
 
 
