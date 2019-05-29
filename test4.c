@@ -17,6 +17,23 @@ void    repos(char *board, int *i) //dereferences the values in the stack and do
 	}
 }
 
+int		place_check(char *piece, char *board)
+{
+	int i;
+	int x;
+
+	i = 0;
+	x = 0;
+	while(piece[i] && board[x])
+	{
+		if(board[x] == '.' && peice[i] >= 'A' && piece[i] <= 'Z')
+			board[x] = piece[i];
+		if (piece[i] == '.' || (piece[i + 1] == '.' && piece[i] < '\n'))
+			i++;
+		x++;
+	}
+
+
 int		place(char *piece, char *board, char letter)
 {
 	int i;
