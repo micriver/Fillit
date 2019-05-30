@@ -133,7 +133,15 @@ int        solve(char *board, char **pieces)
 	letter = '\0';
 	if (!pieces[0]) //if we're at the NULL piece in the 2D array - the end...
 		return (1);
-	while (pieces[0][++i])
+	while (pieces[0] && pieces[0][0] < 64)
+		pieces[0]++;
+	while(board[i++])
+	{
+		if (!place(board, *pieces, i)) || (!solve(board, &pieces[1]))
+			pickup(&board[i], pieces[0], )
+	}
+
+
 	{
 		if (pieces[0][i] >= 64)
 		{
@@ -153,12 +161,10 @@ int        backtrack(char *board, char **pieces, char letter)
 	printf("Current piece to be placed:\n%s\n", pieces[0]);
 	while (board[i] != '\n' && board[++i])
 	{
-		{
-			if (!place(pieces[0], board) || !solve(board, &pieces[1]))
-				pickup(board, letter);
-			else
-				return (1);
-		}
+		if (!place(pieces[0], board) || !solve(board, &pieces[1]))
+			pickup(board, letter);
+		else
+			return (1);
 	}
 	return (0);
 }
