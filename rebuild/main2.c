@@ -6,11 +6,35 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 10:54:00 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/30 14:33:48 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/30 15:20:23 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+int		place(char *board, char *piece, int i)
+{
+	int x;
+	int j;
+	char letter;
+
+	j = 0;
+	x = 0;
+	while (board[x] != '\n' && board[x])
+		x++;
+	letter = piece[j];
+	while (piece[j])
+	{
+		if (!board[i] && x != 3) //<---test!!!!
+			break ;
+		(piece[j] == '\n' && x == 3) ? i-- : i; //<---test!!!!
+		(piece[j] == '\n' && x != 4 && x != 3) ? i += (x - 4) : i; //<---test!!!!
+		board[i] = (board[i] == '.' && piece[j] > 64) ? piece[j] : board[i]; //copying is done here
+		i++;
+		j++;
+	}
+	return (placement_check(board, letter, x) ? 1 : 0);
+}
 
 void        pickup(char *board, int c)
 {
@@ -20,9 +44,7 @@ void        pickup(char *board, int c)
 	while (board[i++])
 	{
 		if (board[i] == c)
-		{
 			board[i] = '.';
-		}
 	} 
 }
 
@@ -46,6 +68,7 @@ int        solve(char *board, char **pieces)
 	}
 	return (0);
 }
+
 void	builder(char *board, char **pieces, int size)
 {
 	int i;
