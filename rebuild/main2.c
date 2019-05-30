@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 10:54:00 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/30 15:20:23 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/30 15:40:04 by brfeltz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,30 @@ int		place(char *board, char *piece, int i)
 		j++;
 	}
 	return (placement_check(board, letter, x) ? 1 : 0);
+}
+int		placement_check(char *piece, char c, int x)
+{
+	int		i;
+	int		sidecount;
+	int		charcount;
+
+	i = -1;
+	sidecount = 0;
+	charcount = 0;
+	while (piece[++i])
+	{
+		if (piece[i] == c)
+		{
+			(piece[i - 1] && (piece[i - 1] == c)) ? sidecount++ : sidecount;
+			(piece[i + 1] && (piece[i + 1] == c)) ? sidecount++ : sidecount;
+			(piece[i - x - 1] && (str[i - x - 1] == c)) ? sidecount++ : sidecount;
+			(piece[i + x + 1] && (piece[i + x + 1] == c)) ? sidecount++ : sidecount;
+			charcount++;
+			if(charcount == 4)
+				break ;
+		}
+	}
+	return ((sidecount == 6 || sidecount == 8) && charcount == 4) ? 1 : 0;
 }
 
 void        pickup(char *board, int c)
