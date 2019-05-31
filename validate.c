@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:33:11 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/31 13:52:51 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/31 14:15:01 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 /*
 ** XXXXXXXXX
-
-
 */
 
 int		checkchars(char *str, int d, int s, int nl)
@@ -48,10 +46,36 @@ int		checksides(char *str, char letter)
 		if (str[i] == '#' || str[i] == letter)
 		{
 			str[i] = letter;
-			(str[i - 1] && (str[i - 1] == '#' || str[i - 1] == letter)) ? sidecount++ : sidecount;
-			(str[i + 1] && (str[i + 1] == '#' || str[i + 1] == letter)) ? sidecount++ : sidecount;
-			(str[i + 5] && (str[i + 5] == '#' || str[i + 5] == letter)) ? sidecount++ : sidecount;
-			(str[i - 5] && (str[i - 5] == '#' || str[i - 5] == letter)) ? sidecount++ : sidecount;
+			(str[i - 1] && (str[i - 1] == '#' ||
+				str[i - 1] == letter)) ? sidecount++ : sidecount;
+			(str[i + 1] && (str[i + 1] == '#' ||
+				str[i + 1] == letter)) ? sidecount++ : sidecount;
+			(str[i + 5] && (str[i + 5] == '#' ||
+				str[i + 5] == letter)) ? sidecount++ : sidecount;
+			(str[i - 5] && (str[i - 5] == '#' ||
+				str[i - 5] == letter)) ? sidecount++ : sidecount;
+		}
+	}
+	return (sidecount == 6 || sidecount == 8 ? 1 : 0);
+}
+
+int		placement_check(char *piece, char c, int x)
+{
+	int		i;
+	int		sidecount;
+
+	i = -1;
+	sidecount = 0;
+	while (piece[++i])
+	{
+		if (piece[i] == c)
+		{
+			(piece[i - 1] && (piece[i - 1] == c)) ? sidecount++ : sidecount;
+			(piece[i + 1] && (piece[i + 1] == c)) ? sidecount++ : sidecount;
+			(piece[i - x - 1] && (piece[i - x - 1] == c))
+				? sidecount++ : sidecount;
+			(piece[i + x + 1] && (piece[i + x + 1] == c))
+				? sidecount++ : sidecount;
 		}
 	}
 	return (sidecount == 6 || sidecount == 8 ? 1 : 0);
