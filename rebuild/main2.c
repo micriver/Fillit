@@ -6,11 +6,85 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 10:54:00 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/30 15:40:04 by brfeltz          ###   ########.fr       */
+/*   Updated: 2019/05/30 18:59:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
+
+void	convert_to_char(char **str, char c)
+{
+	int i;
+
+	i = 0;
+	while (str[0][i] != '\0')
+	{
+		if (str[0][i] == '#')
+			str[0][i] = c;
+		i++;
+	}
+}
+
+char		**piece_check(char **str)
+{
+	char **pieces;
+	char letter;
+	int i;
+
+	i = 0;
+	letter = 'A';
+	pieces = str;
+	while (pieces[i])
+	{
+		if (!checksides(pieces))
+			ERROR;
+		convert_to_char(pieces, letter);
+		// letter++;
+		i++;
+	}
+	return (str);
+}
+
+int		checkchars(char *str, int d, int s, int nl)
+{
+	int i;
+
+	i = 0;
+	while (str[i] == '.' || str[i] == '#' || str[i] == '\n')
+	{
+		(str[i] == '.') ? d++ : d;
+		(str[i] == '#') ? s++ : s;
+		(str[i] == '\n') ? nl++ : nl;
+		i++;
+	}
+	return (((d % 12) == 0) && ((s % 4) == 0) && ((nl + 1) % 5) == 0) ? 1 : 0;
+}
+
+int		checksides(char **str)
+{
+	int		i;
+	int		sidecount;
+	// char	*piece;
+
+	i = 0;
+	sidecount = 0;
+	// str = piece;
+	while (str[0][i])
+	{
+		if (str[0][i] == '#')
+		{
+			(str[0][i + 1] == '#') ? sidecount++ : sidecount;
+			(str[0][i + 5] == '#') ? sidecount++ : sidecount;
+			(str[0][i - 1] == '#') ? sidecount++ : sidecount;
+			(str[0][i - 5] == '#') ? sidecount++ : sidecount;
+		}
+		if (str[0][20])
+			return (str[0][20] != '\n') ? 0 : 1;
+		i++;
+	}
+	return (sidecount == 6 || sidecount == 8) ? 1 : 0;
+}
 
 int		place(char *board, char *piece, int i)
 {
@@ -50,7 +124,7 @@ int		placement_check(char *piece, char c, int x)
 		{
 			(piece[i - 1] && (piece[i - 1] == c)) ? sidecount++ : sidecount;
 			(piece[i + 1] && (piece[i + 1] == c)) ? sidecount++ : sidecount;
-			(piece[i - x - 1] && (str[i - x - 1] == c)) ? sidecount++ : sidecount;
+			(piece[i - x - 1] && (piece[i - x - 1] == c)) ? sidecount++ : sidecount;
 			(piece[i + x + 1] && (piece[i + x + 1] == c)) ? sidecount++ : sidecount;
 			charcount++;
 			if(charcount == 4)
@@ -65,27 +139,23 @@ void        pickup(char *board, int c)
 	int i;
 
 	i = -1;
-	while (board[i++])
-	{
-		if (board[i] == c)
-			board[i] = '.';
-	} 
+	while (board[++i])
+		board[i] = (board[i] == c) ? '.' : board[i];
 }
 
-int        solve(char *board, char **pieces)
+int        solve(char *board, char **pieces, int i)
 {
-	int		i;
-	char	letter;
+	// char	letter;
 
-	i = -1;
-	letter = '\0';
+	// letter = '\0';
+	// printf("This is the piece we're about to solve:\n%s\n", pieces[0]);
 	if (!pieces[0]) //if we're at the NULL piece in the 2D array - the end...
 		return (1);
 	while (pieces[0] && pieces[0][0] < 64)
 		pieces[0]++;
-	while(board[i++])
+	while(board[++i])
 	{
-		if ((!place(board, *pieces, i)) || (!solve(board, &pieces[1])))
+		if (place(board, *pieces, i) != 1 || (!solve(board, &pieces[0 + 1], -1)))
 			pickup(&board[i], *pieces[0]);
 		else
 			return (1);
@@ -103,7 +173,7 @@ void	builder(char *board, char **pieces, int size)
 		while (++i < (size * (size + 1))) //loop through according to the size, according to the number of pieces
 			board[i] = (i % (size + 1) == size) ? '\n' : '.'; //fill the board with either new lines or dots
 		board[i] = '\0'; //terminate the string
-		if (!solve(board, pieces))
+		if (!solve(board, pieces, -1))
 		{
 			size++;
 			board = ft_strnew(size * (size + 5));
@@ -125,14 +195,14 @@ char	**ft_separate(char *str)
 	i = 0;
 	oldstr = str;
 	dest = (char**)malloc(sizeof(char*) * 27); // allocating space for 2d array, limiting to 27
-	while (*oldstr)
+	while (*oldstr != '\0')
 	{
 		dest[g_size] = ft_strnew(21); // creating a new string of 21 bytes in each index
-		ft_strncpy(dest[i], oldstr, 21); // copy at every 21 pieces to new index
-		g_size++;
-		oldstr += 21; // adding 21 to old string to skip the 21 we alread had
-		if (ft_strlen(oldstr) < 20) //this was for the garbage value tetriminos being printed
+		ft_strncpy(dest[g_size], oldstr, 21); // copy at every 21 pieces to new index
+		g_size += 1;
+		if (!oldstr[19]) //this was for the garbage value tetriminos being printed
 			break ;
+		oldstr += 21; // adding 21 to old string to skip the 21 we alread had
 	}
 	dest[g_size] = NULL; //adding a null string at the end of the 2d array
 	return (dest);
@@ -167,7 +237,8 @@ int		main(int ac, char **av)
 	char	**pieces;
 	char	*board;
 	int		size;
-
+	// int i = 0;
+	
 	size = 0;
 	if (ac == 2)
 	{
@@ -175,6 +246,11 @@ int		main(int ac, char **av)
 		if (!checkchars(txt, 0, 0, 0))
 			ERROR;
 		pieces = ft_separate(txt);
+		// while(i <= g_size)
+		// {
+		// 	printf("%d.\n%s\n", i + 1, pieces[i]);
+		// 	i++;
+		// }
 		piece_check(pieces);
 		while (size * size < g_size * 4)
 			size++;
