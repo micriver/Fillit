@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/30 18:44:24 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/31 10:22:47 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		g_size;
 */
 
 int		checkchars(char *str, int d, int s, int nl);
-int		checksides(char **str);
+int		checksides(char *str, char letter);
 char	**piece_check(char **str);
 
 /*

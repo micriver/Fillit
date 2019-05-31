@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 10:54:00 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/30 22:28:55 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/31 11:12:28 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	convert_to_char(char **str, char c)
 	}
 }
 
-char		**piece_check(char **str)
+/* char		**piece_check(char **str)
 {
 	char **pieces;
 	char letter;
@@ -44,7 +44,7 @@ char		**piece_check(char **str)
 		i++;
 	}
 	return (str);
-}
+} */
 
 int		checkchars(char *str, int d, int s, int nl)
 {
@@ -56,34 +56,33 @@ int		checkchars(char *str, int d, int s, int nl)
 		(str[i] == '.') ? d++ : d;
 		(str[i] == '#') ? s++ : s;
 		(str[i] == '\n') ? nl++ : nl;
+		if (i + 1 == 21)
+			if (str[i] != '\n')
+				return (0);
 		i++;
 	}
 	return (((d % 12) == 0) && ((s % 4) == 0) && ((nl + 1) % 5) == 0) ? 1 : 0;
 }
 
-int		checksides(char **str)
+int		checksides(char *str, char letter)
 {
 	int		i;
 	int		sidecount;
-	// char	*piece;
 
-	i = 0;
+	i = -1;
 	sidecount = 0;
-	// str = piece;
-	while (str[0][i])
+	while (str[++i])
 	{
-		if (str[0][i] == '#')
+		if (str[i] == '#' || str[i] == letter)
 		{
-			(str[0][i + 1] == '#') ? sidecount++ : sidecount;
-			(str[0][i + 5] == '#') ? sidecount++ : sidecount;
-			(str[0][i - 1] == '#') ? sidecount++ : sidecount;
-			(str[0][i - 5] == '#') ? sidecount++ : sidecount;
+			str[i] = letter;
+			(str[i - 1] && (str[i - 1] == '#' || str[i - 1] == letter)) ? sidecount++ : sidecount;
+			(str[i + 1] && (str[i + 1] == '#' || str[i + 1] == letter)) ? sidecount++ : sidecount;
+			(str[i + 5] && (str[i + 5] == '#' || str[i + 5] == letter)) ? sidecount++ : sidecount;
+			(str[i - 5] && (str[i - 5] == '#' || str[i - 5] == letter)) ? sidecount++ : sidecount;
 		}
-		if (str[0][20])
-			return (str[0][20] != '\n') ? 0 : 1;
-		i++;
 	}
-	return (sidecount == 6 || sidecount == 8) ? 1 : 0;
+	return (sidecount == 6 || sidecount == 8 ? 1 : 0);
 }
 
 int		place(char *board, char *piece, int i)
@@ -113,11 +112,9 @@ int		placement_check(char *piece, char c, int x)
 {
 	int		i;
 	int		sidecount;
-	int		charcount;
 
 	i = -1;
 	sidecount = 0;
-	charcount = 0;
 	while (piece[++i])
 	{
 		if (piece[i] == c)
@@ -126,12 +123,9 @@ int		placement_check(char *piece, char c, int x)
 			(piece[i + 1] && (piece[i + 1] == c)) ? sidecount++ : sidecount;
 			(piece[i - x - 1] && (piece[i - x - 1] == c)) ? sidecount++ : sidecount;
 			(piece[i + x + 1] && (piece[i + x + 1] == c)) ? sidecount++ : sidecount;
-			charcount++;
-			if(charcount == 4)
-				break ;
 		}
 	}
-	return ((sidecount == 6 || sidecount == 8) && charcount == 4) ? 1 : 0;
+	return (sidecount == 6 || sidecount == 8 ? 1 : 0); // ~~~~~
 }
 
 void        pickup(char *board, int c)
@@ -187,21 +181,21 @@ void	builder(char *board, char **pieces, int size)
 	}
 }
 
-char	**ft_separate(char *str) 
+char	**ft_separate(char *str, char letter) 
 {
 	char **dest; // creating our new 2d array
 	char *oldstr;
-	int i;
 	
-	i = 0;
 	oldstr = str;
 	dest = (char**)malloc(sizeof(char*) * 27); // allocating space for 2d array, limiting to 27
 	while (*oldstr != '\0')
 	{
 		dest[g_size] = ft_strnew(21); // creating a new string of 21 bytes in each index
 		ft_strncpy(dest[g_size], oldstr, 21); // copy at every 21 pieces to new index
+		if (!checkchars(str, 0, 0, 0) || !checksides(dest[g_size], letter++))
+			ERROR;
 		g_size += 1;
-		if (!oldstr[19]) //this was for the garbage value tetriminos being printed
+		if (!oldstr[20]) //this was for the garbage value tetriminos being printed
 			break ;
 		oldstr += 21; // adding 21 to old string to skip the 21 we alread had
 	}
@@ -244,15 +238,15 @@ int		main(int ac, char **av)
 	if (ac == 2)
 	{
 		txt = textarray(av[1]);
-		if (!checkchars(txt, 0, 0, 0))
-			ERROR;
-		pieces = ft_separate(txt);
+		// if (!checkchars(txt, 0, 0, 0))
+		// 	ERROR;
+		pieces = ft_separate(txt, 'A');
 		// while(i <= g_size)
 		// {
 		// 	printf("%d.\n%s\n", i + 1, pieces[i]);
 		// 	i++;
 		// }
-		piece_check(pieces);
+		// piece_check(pieces);
 		while (size * size < g_size * 4)
 			size++;
 		board = ft_strnew(size * (size + 1));
