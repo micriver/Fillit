@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:10:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/29 17:59:44 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/31 13:25:54 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ int		g_size;
 */
 
 int		checkchars(char *str, int d, int s, int nl);
-int		checksides(char *str);
+int		checksides(char *str, char letter);
 char	**piece_check(char **str);
 
 /*
 ** Board management
 */
 
-void	convert_to_char(char *str, char c);
+void	convert_to_char(char **str, char c);
 // char	**builder(int g_size);
 // void	print_board(char **board, int size);
 
@@ -59,13 +59,13 @@ void	convert_to_char(char *str, char c);
 */
 
 void	print_board(char *board);
-char	*builder(int g_size);
+void	builder(char *board, char **pieces, int size);
 
-int		solve(char *board, char **pieces);
+int		solve(char *board, char **pieces, int i);
 int		backtrack(char *board, char **pieces, char letter);
-int		place(char *piece, char *board);
-int		placement_check(char *piece, char c);
-void    pickup(char *board, char c);
+int		place(char *piece, char *board, int i);
+int		placement_check(char *piece, char c, int x);
+void    pickup(char *board, int c);
 
 
 
