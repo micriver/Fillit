@@ -6,73 +6,31 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 18:52:57 by brfeltz           #+#    #+#             */
-/*   Updated: 2019/05/17 22:30:14 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/31 13:49:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**builder(int g_size)
-{
-	int		i;
-	int		j;
-	char	**board;
-
-	i = 0;
-	g_size += 1;
-	board = (char **)malloc(sizeof(char *) * g_size);
-	while (i < (g_size - 1))
-	{
-		board[i] = (char*)malloc(sizeof(char) * g_size + 1);
-		j = 0;
-		while (j < (g_size - 1))
-		{
-			board[i][j] = '.';
-			j++;
-		}
-		board[i][g_size - 1] = '\n';
-		board[i][g_size] = '\0';
-		i++;
-	}
-	board[g_size - 1] = NULL;
-	return (board);
-}
-
-/*
-** print 2d board from memory
-*/
-
-void	print_board(char **board, int size)
-{
-	int row;
-	int col;
-
-	row = 0;
-	while (row < size)
-	{
-		col = 0;
-		while (col < size)
-		{
-			ft_putchar(board[row][col]);
-			col++;
-		}
-		ft_putchar('\n');
-		row++;
-	}
-}
-
-/*
-** free memory for our board when we're finished with it
-*/
-
-void	free_board(char **grid, int size)
+void	builder(char *board, char **pieces, int size)
 {
 	int i;
 
-	i = 0;
-	while (i < size)
+	while (1)
 	{
-		free(grid[i]);
-		i++;
+		i = -1;
+		while (++i < (size * (size + 1))) //loop through according to the size, according to the number of pieces
+			board[i] = (i % (size + 1) == size) ? '\n' : '.'; //fill the board with either new lines or dots
+		board[i] = '\0'; //terminate the string
+		if (!solve(board, pieces, -1))
+		{
+			size++;
+			board = ft_strnew(size * (size + 5));
+		}
+		else
+		{
+			ft_putstr(board);
+			exit(0);
+		}
 	}
 }

@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 19:38:06 by mirivera          #+#    #+#              #
-#    Updated: 2019/05/16 18:09:45 by mirivera         ###   ########.fr        #
+#    Updated: 2019/05/31 13:20:04 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(NAME):
 	@$(CC) $(CFLAGS) -I $(HEADERS) -o main.o -c main.c
 	@$(CC) $(CFLAGS) -I $(HEADERS) -o validate.o -c validate.c
 	@$(CC) $(CFLAGS) -I $(HEADERS) -o board.o -c board.c
-	# @$(CC) $(CFLAGS) -I $(HEADERS) -o solve.o -c solve.c
+	@$(CC) $(CFLAGS) -I $(HEADERS) -o solve.o -c solve.c
 	@$(CC) $(CFLAGS) -I $(HEADERS) -o fillit $(OBJ) -L libft/ -lft -g
 
 clean:

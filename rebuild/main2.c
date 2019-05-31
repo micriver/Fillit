@@ -6,45 +6,20 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 10:54:00 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/31 11:17:59 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/31 13:45:50 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-void	convert_to_char(char **str, char c)
+void        pickup(char *board, int c)
 {
 	int i;
 
-	i = 0;
-	while (str[0][i] != '\0')
-	{
-		if (str[0][i] == '#')
-			str[0][i] = c;
-		i++;
-	}
+	i = -1;
+	while (board[++i])
+		board[i] = (board[i] == c) ? '.' : board[i];
 }
-
-/* char		**piece_check(char **str)
-{
-	char **pieces;
-	char letter;
-	int i;
-
-	i = 0;
-	letter = 'A';
-	pieces = str;
-	while (pieces[i])
-	{
-		if (!checksides(pieces))
-			ERROR;
-		convert_to_char(pieces, letter);
-		// letter++;
-		i++;
-	}
-	return (str);
-} */
 
 int		checkchars(char *str, int d, int s, int nl)
 {
