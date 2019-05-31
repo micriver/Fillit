@@ -6,6 +6,7 @@ fillit
 *.a
 
 #Folders
+/coldstorage
 samples/
 /includes/*
 /tests
