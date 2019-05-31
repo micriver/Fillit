@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 10:54:00 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/30 18:59:52 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/30 21:16:00 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,18 +145,19 @@ void        pickup(char *board, int c)
 
 int        solve(char *board, char **pieces, int i)
 {
+	static int x = 0;
 	// char	letter;
 
 	// letter = '\0';
 	// printf("This is the piece we're about to solve:\n%s\n", pieces[0]);
 	if (!pieces[0]) //if we're at the NULL piece in the 2D array - the end...
 		return (1);
-	while (pieces[0] && pieces[0][0] < 64)
-		pieces[0]++;
+	while (pieces[x] && pieces[x][0] < 64)
+		pieces[x]++;
 	while(board[++i])
 	{
-		if (place(board, *pieces, i) != 1 || (!solve(board, &pieces[0 + 1], -1)))
-			pickup(&board[i], *pieces[0]);
+		if (place(board, *pieces, i) != 1 || (!solve(board, &pieces[x + 1], -1)))
+			pickup(&board[i], *pieces[x]);
 		else
 			return (1);
 	}
