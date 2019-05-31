@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 10:54:00 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/31 14:05:31 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/05/31 14:29:03 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ char	**ft_separate(char *str, char letter)
 		dest[g_size] = ft_strnew(21);
 		ft_strncpy(dest[g_size], oldstr, 21);
 		if (!checkchars(str, 0, 0, 0) || !checksides(dest[g_size], letter++))
-			ERROR;
+		{
+			ft_putstr("error\n");
+			exit(0);
+		}
 		g_size += 1;
 		if (!oldstr[20])
 			break ;
@@ -46,7 +49,10 @@ char	*textarray(char *txt)
 	while (read(fd, &buf, 1))
 		x++;
 	if (x < 20 || x > 545)
-		ERROR;
+	{
+		ft_putstr("error\n");
+		exit(0);
+	}
 	dest = ft_strnew(x);
 	close(fd);
 	x = 0;
