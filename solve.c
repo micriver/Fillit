@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: michaelrivera <michaelrivera@student.42    +#+  +:+       +#+        */
+/*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/02 15:16:10 by michaelrive      ###   ########.fr       */
+/*   Updated: 2019/06/03 10:05:30 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+/*
+** pickup loops through the map looking for the given letter
+** and changes them into dots to redo piece placement
+*/
 
 void	pickup(char *board, int c)
 {
@@ -20,6 +25,17 @@ void	pickup(char *board, int c)
 	while (board[++i])
 		board[i] = (board[i] == c) ? '.' : board[i];
 }
+
+/*
+** place uses some black magic to find the correct
+** indexes to start copying from the piece string
+** to the board string. place iterates using (x)
+** before the next ('\n') char. The variable letter
+** is initialized to the first index of the piece
+** that was given from the solve function before.
+** Then it iterates through the pieces indexes. If the board
+** is at the end
+*/
 
 int		place(char *board, char *piece, int i)
 {
@@ -45,6 +61,19 @@ int		place(char *board, char *piece, int i)
 	return (placement_check(board, letter, x) ? 1 : 0);
 }
 
+/*
+** solve is where the backtracking occurs.
+** It first looks to see if we've encountered
+** the NULL array at the end of pieces for a cue to stop.
+** Then it takes the incoming piece and iterates
+** to the first letter, cutting the string down in the process.
+** Then it iterates through the indexes on the board
+** to begin backtracking. If place nor solve don't work
+** the function tries placing the next piece instead,
+** then the prior piece is picked up. If they both work,
+** the board has been solved and (1) is returned to exit the function.
+*/
+
 int		solve(char *board, char **pieces, int i)
 {
 	if (!pieces[0])
@@ -60,6 +89,19 @@ int		solve(char *board, char **pieces, int i)
 	}
 	return (0);
 }
+
+/*
+** builder uses the given size from the main
+** replace the '\0' characters with either a
+** '\n' char or a '.' according to the index and a
+** modulo operation. Then the string is terminated.
+** builder then calls the solve function where the
+** hard work is all done. If solve returns (0)
+** size is increased to increase the size of the board
+** because there wasn't enough space for the last piece.
+** Once solve is done, the board is printed
+** and exit(0) is called.
+*/
 
 void	builder(char *board, char **pieces, int size)
 {
