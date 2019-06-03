@@ -6,14 +6,17 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:33:11 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/31 14:15:01 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/03 15:27:22 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-** XXXXXXXXX
+** It adds + 1 to nl because the last tetrimino
+** will only have 4 nl chars so we need to force
+** the total to be divisable by 5 to account
+** for the nl chars in between multiple tetriminos.
 */
 
 int		checkchars(char *str, int d, int s, int nl)
@@ -33,6 +36,10 @@ int		checkchars(char *str, int d, int s, int nl)
 	}
 	return (((d % 12) == 0) && ((s % 4) == 0) && ((nl + 1) % 5) == 0) ? 1 : 0;
 }
+
+/*
+** checksides 
+*/
 
 int		checksides(char *str, char letter)
 {
@@ -58,6 +65,10 @@ int		checksides(char *str, char letter)
 	}
 	return (sidecount == 6 || sidecount == 8 ? 1 : 0);
 }
+
+/*
+** 
+*/
 
 int		placement_check(char *piece, char c, int x)
 {
