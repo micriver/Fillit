@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: michaelrivera <michaelrivera@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/05/31 14:08:09 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/02 15:16:10 by michaelrive      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*
-** convert sharps to letters in string 2D array pieces
-*/
 
 void	pickup(char *board, int c)
 {
