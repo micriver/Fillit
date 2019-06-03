@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 10:54:00 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/03 10:05:00 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/03 15:16:06 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 ** Our g_size variable counts the number
 ** of pieces placed into the array and then uses that
 ** to determine the size of the board.
+** Then there is another error check making sure
+** there are at least 20 chars left in the given string
+** we're dereferencing with *oldstr. If not,
+** we break out of the while loop and create a NULL string
+** to terminate the 2D (dest) array.
 */
 
 char	**ft_separate(char *str, char letter)
