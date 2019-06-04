@@ -6,14 +6,14 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:40:28 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/03 13:29:59 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/03 19:36:24 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-** pickup loops through the map looking for the given letter
+** pickup loops through the board looking for the given letter
 ** and changes them into dots to redo piece placement
 */
 
@@ -27,14 +27,22 @@ void	pickup(char *board, int c)
 }
 
 /*
-** place uses some black magic to find the correct
-** indexes to start copying from the piece string
-** to the board string. place iterates using (x)
-** before the next ('\n') char. The variable letter
-** is initialized to the first index of the piece
-** that was given from the solve function before.
-** Then it iterates through the pieces indexes. If the board
-** is at the end
+** place uses a while loop to come up with the length
+** of each row of the current board to be printed
+** and assigns that value to (x). Then it assigns
+** piece's current index to the letter variable
+** that will be passed to placement check.
+** Then it starts to loop through the piece.
+** It checks to see if we're at ('\0') for the board
+** to break out of the loop. The ternary operators look for a new line char
+** as we iterate through the current piece. If (x) is any number besides (3)
+** or (4) then [i += (x - 4)] will set the index to the nl char of the board
+** and then the iterations between (i) and (j) will match the order up again.
+** It subtracts (4) because that is length of the piece's row w/o the nl char.
+** If (x) = 3, (the smallest piece other than a square) then the board's index
+** will be sent backwards by (1) to match the nl spot that the piece is on.
+** It returns a call to placement check to make sure the current piece its just
+** placed is correct and in a good spot, (1) if true, (0) is false.
 */
 
 int		place(char *board, char *piece, int i)
@@ -63,10 +71,10 @@ int		place(char *board, char *piece, int i)
 
 /*
 ** solve is where the backtracking occurs.
-** It first looks to see if we've encountered
+** First, it looks to see if we've encountered
 ** the NULL array at the end of pieces for a cue to stop.
 ** Then it takes the incoming piece and iterates
-** to the first letter, cutting the string down in the process.
+** to the first letter, cutting the string down as it increases the index.
 ** Then it iterates through the indexes on the board
 ** to begin backtracking. If place nor solve don't work
 ** the function tries placing the next piece instead,
