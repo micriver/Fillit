@@ -32,6 +32,11 @@ All functions were written according to 42's coding standard,
 
 Download the repository by copying and pasting the commands below.
 
+```bash
+git clone https://github.com/micriver/Fillit.git
+cd Fillit
+```
+
 You can compile the ```fillit``` executable using the Makefile:
 
 Command       |  Action
