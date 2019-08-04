@@ -1,7 +1,7 @@
 <p align="center">
   <div align="center">
    <img src="assets/gnl_graph_2.png" width="500px"</img><br>
-    <em><i>I'll never play Tetris again...</i><em>
+    <em><i>I'll never play Tetris again...</i></em>
   </div>
 </p>
 
