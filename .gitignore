@@ -7,7 +7,7 @@ fillit
 
 #Folders
 /coldstorage
-/samples/
+#/samples/
 /rebuild
 /includes/*
 /tests
