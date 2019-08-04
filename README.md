@@ -7,7 +7,7 @@
 
 # Fillit
 
-The goal for this project is to create an executable that takes only one parameter- an input file which contains a list of Tetriminos to assemble. 
+The goal for this project is to create an executable that takes only one parameter- an input file which contains a list of Tetriminos to assemble:
 
 <p align="center">
   <div align="center">
@@ -15,7 +15,7 @@ The goal for this project is to create an executable that takes only one paramet
   </div>
 </p>
 
-The algorithm must arrange the Tetriminos into the smallest possible square, keeping the given order from the input file.
+The algorithm must arrange the Tetriminos into the smallest possible square, keeping the given order from the input file:
 
 <p align="center">
   <div align="center">
@@ -26,7 +26,7 @@ The algorithm must arrange the Tetriminos into the smallest possible square, kee
 **Project Document:**
 [Fillit.pdf](https://github.com/micriver/get_next_line/blob/master/docs/get_next_line.en.pdf)
 
-During the project, I worked even more with pointers and 2D arrays. I was exposed to various algorithmic concepts, backtracking and recursive functions. Writing Fillit to the norm forced me to practice with new, optimized C language syntax.
+During the project, my partner and I decided we'd place our tetriminos into a 2D array in memory that we would loop through and place onto the board to be displayed. Writing Fillit to the norm forced me to practice with new, optimized C language syntax. I was exposed to various algorithmic concepts, backtracking and recursive functions. 
 
 All functions were written according to 42's coding standard,
 [the Norm](https://github.com/micriver/docs/norme.en%20.pdf).
