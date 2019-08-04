@@ -15,7 +15,7 @@ The goal for this group project is to create an executable that takes only one p
   </div>
 </p>
 
-The algorithm must arrange the Tetriminos into the **smallest possible square**, keeping the given order from the input file, **starting from the top left**.
+The algorithm must arrange the Tetriminos into the **smallest possible square**, keeping the given order from the input file, **starting from the top left**. There can only be a maximum of 26 tetriminos.
 
 During the project, my partner and I decided we'd place our tetriminos into a 2D array in memory. We then looped through and placed each piece onto a board displayed via ```STDOUT```. You can follow our thought process by checking out our commented code here; [our main](main.c), [validation functions](validate.c), [solver functions](solve.c). 
 
