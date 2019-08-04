@@ -7,7 +7,7 @@
 
 # Fillit
 
-The goal for this project is to create an executable that takes only one parameter- an input file which contains a list of Tetriminos to assemble:
+The goal for this group project is to create an executable that takes only one parameter- an input file which contains a list of Tetriminos to assemble:
 
 <p align="center">
   <div align="center">
