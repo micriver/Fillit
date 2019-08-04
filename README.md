@@ -9,11 +9,19 @@
 
 The goal for this project is to create an executable that takes only one parameter- an input file which contains a list of Tetriminos to assemble. 
 
-![sample input file](https://github.com/micriver/42_fillit/blob/master/assets/sample%20input%20file.png)
+<p align="center">
+  <div align="center">
+   <img src="https://github.com/micriver/42_fillit/blob/master/assets/sample%20input%20file.png" width="520px"</img><br>
+  </div>
+</p>
 
 The algorithm must arrange the Tetriminos into the smallest possible square, keeping the given order from the input file.
 
-![sample output screenshot](assets/sample_fillit_output.png)
+<p align="center">
+  <div align="center">
+   <img src="assets/sample_fillit_output.png" width="800px"</img><br>
+  </div>
+</p>
 
 **Project Document:**
 [Fillit.pdf](https://github.com/micriver/get_next_line/blob/master/docs/get_next_line.en.pdf)
