@@ -11,7 +11,7 @@ The goal for this project is to create an executable that takes only one paramet
 
 <p align="center">
   <div align="center">
-   <img src="https://github.com/micriver/42_fillit/blob/master/assets/sample%20input%20file.png" width="520px"</img><br>
+   <img src="https://github.com/micriver/Fillit/blob/master/assets/sample_input_file.png" width="520px"</img><br>
   </div>
 </p>
 
