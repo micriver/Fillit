@@ -26,7 +26,7 @@ The algorithm must arrange the Tetriminos into the smallest possible square, kee
 **Project Document:**
 [Fillit.pdf](https://github.com/micriver/get_next_line/blob/master/docs/get_next_line.en.pdf)
 
-During the project, my partner and I decided we'd place our tetriminos into a 2D array in memory that we would loop through and place onto the board to be displayed. Writing Fillit to the norm forced me to practice with new, optimized C language syntax. I was exposed to various algorithmic concepts, backtracking and recursive functions. 
+During the project, my partner and I decided we'd place our tetriminos into a 2D array in memory. We then looped through and placed each piece onto a board displayed on ```STDOUT```. Writing Fillit to the norm forced me to practice with new, optimized C language syntax. I was exposed to various algorithmic concepts, backtracking and recursive functions. 
 
 All functions were written according to 42's coding standard,
 [the Norm](https://github.com/micriver/docs/norme.en%20.pdf).
