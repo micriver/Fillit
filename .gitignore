@@ -18,6 +18,11 @@ libft/.gitignore
 *.o
 /objects
 
+#dot files
+._*
+.*
+*.*
+
 #Misc files
 .DS_Store
 *.py
