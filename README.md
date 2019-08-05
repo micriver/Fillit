@@ -25,7 +25,7 @@ Writing Fillit to the norm forced me to practice with new, optimized C language 
 [Fillit.pdf](docs/fillit.en.pdf)
 
 All functions were written according to 42's coding standard,
-[the Norm](https://github.com/micriver/docs/norme.en%20.pdf).
+[the Norm](docs/norme.en.pdf).
 
 
 ## Installation
