@@ -37,7 +37,7 @@ git clone https://github.com/micriver/Fillit.git
 cd Fillit
 ```
 
-You can compile the ```fillit``` executable using the Makefile:
+You can compile the ```./fillit``` executable using the Makefile:
 
 Command       |  Action
 :-------------|:-------------
