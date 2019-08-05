@@ -41,10 +41,10 @@ You can compile the ```fillit``` executable using the Makefile:
 
 Command       |  Action
 :-------------|:-------------
-`make`        | Compile the ```fillit``` executable.
+`make`        | Compile the executable.
 `make clean`  | Remove object files.
 `make fclean` | Remove object files and the executable.
-`make re`     | Re-compile the ```fillit``` executable.
+`make re`     | Re-compile the executable.
 
 ## Usage
 
